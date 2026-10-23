@@ -1,0 +1,622 @@
+{
+  "source_url": "https://bareartisanproducts.com",
+  "scraped_at": "2026-10-23T20:59:37Z",
+  "brand": {
+    "name": "Bare Artisan Products",
+    "logo_url": "https://bareartisanproducts.com/cdn/shop/files/Bare_logo_natural_Artisan_copy.jpg?v=1742580574&width=600",
+    "story": "Bare Natural Skin Products is a trendsetting Online Skin Care Store, offering our first-rate products and exceptional customer service to shoppers from the comfort of their own homes. Our artisan products are hand crafted consciously and energetically from herbs grown organically in Jamaica, taking into consideration the skin is our largest organ. Our skin needs to be cleaned detoxified daily. Include our products in your daily routine and feel the difference. We are a business made up of innovators and forward-thinkers, with the drive and wherewithal to constantly update and improve the online shopping experience. Please feel free to contact us with any questions or comments."
+  },
+  "categories": [
+    {
+      "name": "Body Butters",
+      "handle": "body-butters",
+      "description": "Benefits of Organic Body Butter When we apply commercial lotion, the skin feels moisturized at first but the residue dries the skin out with harsh chemicals and preservatives and get no improvement. Mother nature has given us plant based oils to help create soft supple skin. Bare body butters are made with infused coconut oil and Shea butter. Ingredients: African Shea Butter, Cannabis infused in coconut oil, Vitamin E oil, Patchouli essential oil",
+      "ingredients": "African Shea Butter, Cannabis infused in coconut oil, Vitamin E oil, Patchouli essential oil",
+      "url": "https://bareartisanproducts.com/collections/body-butters",
+      "count": 2
+    },
+    {
+      "name": "Beard Oils",
+      "handle": "beard-oils",
+      "description": "Our new natural beard oil has been specially formulated to nourish, strengthen, and promote healthy hair, mustache, locks, beard growth for a beard that will truly impress. With a blend of all-natural ingredients, this oil is gentle on the skin and will leave your beard feeling soft, shiny, and refreshed.",
+      "ingredients": "",
+      "url": "https://bareartisanproducts.com/collections/beard-oils",
+      "count": 1
+    },
+    {
+      "name": "Soaps",
+      "handle": "soaps",
+      "description": "",
+      "ingredients": "",
+      "url": "https://bareartisanproducts.com/collections/soaps",
+      "count": 12
+    },
+    {
+      "name": "Facial Serum",
+      "handle": "facial-serum",
+      "description": "Rejuvenate face and throat with 7 essential oils known for anti-ageing. Ingredients: Jojoba oil, Rosemary infused in coconut oil, Grapeseed oil, Vitamin E oil, Frankincense, Geranium, Rosemary, Lavender, Neroli, Myrrh, Carrot seed essential oil.",
+      "ingredients": "Jojoba oil, Rosemary infused in coconut oil, Grapeseed oil, Vitamin E oil, Frankincense, Geranium, Rosemary, Lavender, Neroli, Myrrh, Carrot seed essential oil",
+      "url": "https://bareartisanproducts.com/collections/facial-serum",
+      "count": 1
+    },
+    {
+      "name": "Skin Tonic",
+      "handle": "skin-tonic",
+      "description": "",
+      "ingredients": "",
+      "url": "https://bareartisanproducts.com/collections/skin-tonic",
+      "count": 3
+    },
+    {
+      "name": "Hair Products",
+      "handle": "hair-products",
+      "description": "",
+      "ingredients": "",
+      "url": "https://bareartisanproducts.com/collections/hair-products",
+      "count": 5
+    },
+    {
+      "name": "Insect Repellent",
+      "handle": "insect-repellent",
+      "description": "Made with infused Neem, Eucalyptus, Peppermint, Lemongrass and Clove oil. Safe to use on infants.",
+      "ingredients": "",
+      "url": "https://bareartisanproducts.com/collections/insect-repellent",
+      "count": 1
+    },
+    {
+      "name": "Infused Coconut Oil",
+      "handle": "infused-in-coconut-oil",
+      "description": "1.Neem exhibits several healing properties including anti-inflammatory, antifungal, antibacterial, antiviral and anti carcinogenic. Neem has a favorable influence to treat a myriad of skin infections. 2.Rosemary is rich in phytonutrients, antioxidants and essential acids. It stimulates the brain, skin and hair. Rosemary stimulates biological activity and cell growth to reduce fine lines and wrinkles. It is beneficial for treating dermatitis, eczema and psoriasis, as well as hair growth. 3.Moringa, known as the “miracle tree” is loaded with minerals and vitamins. Used on the hair and scalp, it prevents hair damage, dandruff, dry and lifeless hair. It also increases blood circulation of the scalp and boosts hair growth. Moringa leave contain anti-inflammatory and antiseptic properties, helping to cure minor injuries like bruises, cuts and burns. It removes impurities and rejuvenates the skin.",
+      "ingredients": "",
+      "url": "https://bareartisanproducts.com/collections/infused-in-coconut-oil",
+      "count": 3
+    },
+    {
+      "name": "Mists",
+      "handle": "mist",
+      "description": "Bare Aloe Mist is great after shave, after sun and after insect bites. The infused aloe vera Bare Aloe Mist is a dynamite combination of the anti-inflammatory properties of infused Aloe Vera gel with the moisturizing properties of Witch Hazel and Glycerin to calm, soothe and promote healing of inflamed areas, while the powerful antioxidants tighten pores - reducing acne, preventing razor bumps and creating protection from the sun’s damage. Glycerin also increases the skin’s hydration giving it a youthful, healthy glow.",
+      "ingredients": "",
+      "url": "https://bareartisanproducts.com/collections/mist",
+      "count": 1
+    },
+    {
+      "name": "Deodorant",
+      "handle": "deodorant",
+      "description": "Aluminum is effective as an antiperspirant to stop sweat. However, armpits are designed to sweat for a good reason. It is our natural mechanism for detoxing the body. Natural deodorants are free of aluminum, which is being associated with cancers, Alzheimers and a host of other diseases. Bare deodorant won’t prevent sweating, but it fights odour-causing bacteria with essential oils, baking soda and other natural products. Ingredients: Coconut oil, Beeswax, baking soda, Bentonite clay, arrowroot powder, corn starch, basil and ylang ylang essential oils Enjoy powerful odor protection in a fresh, invigorating scent. Benefits New and improved formula Provides odour protection Leaves no residue on your skin or clothing Smooth, clean feeling during application Fresh, invigorating scent that appeals to both men and women",
+      "ingredients": "Coconut oil, Beeswax, baking soda, Bentonite clay, arrowroot powder, corn starch, basil and ylang ylang essential oils Enjoy powerful odor protection in a fresh, invigorating scent. Benefits New and improved formula Provides odour protection Leaves no residue on your skin or clothing Smooth, clean feeling during application Fresh, invigorating scent that appeals to both men and women",
+      "url": "https://bareartisanproducts.com/collections/deodorant",
+      "count": 1
+    },
+    {
+      "name": "Under Eye Serum",
+      "handle": "eye-serum",
+      "description": "Bare Under Eye serum reduces the appearance of fine lines and wrinkles, the appearance of \"crow's feet\", reduces puffiness, and restores youthful glow to eye area. Apply roller ball around eye area mornings and night after cleansing. Pat gently with finger tip to aid absorption. Ingredients: Jojoba oil, Moringa infused in coconut oil, Frankincense, Geranium, Helicrysum and Patchouli essential oil. Vitamin E oil",
+      "ingredients": "Jojoba oil, Moringa infused in coconut oil, Frankincense, Geranium, Helicrysum and Patchouli essential oil. Vitamin E oil",
+      "url": "https://bareartisanproducts.com/collections/eye-serum",
+      "count": 1
+    }
+  ],
+  "products": [
+    {
+      "id": "10101594489116",
+      "handle": "bare-dream-cream",
+      "name": "Bare Dream Cream",
+      "description": "A delicate blend of essential fatty acids, vitamins, nutrients and antioxidants that improves the skin tone, moisture level and elasticity while promoting calmness, serenity and relaxation.",
+      "ingredients": "",
+      "price": 30.0,
+      "price_label": "$30.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BaredreamCream.webp?v=1742575100",
+      "image_alt": "Bare Dream Cream",
+      "product_url": "https://bareartisanproducts.com/products/bare-dream-cream",
+      "category_handles": [
+        "body-butters"
+      ],
+      "categories": [
+        "Body Butters"
+      ]
+    },
+    {
+      "id": "10101594226972",
+      "handle": "bare-rosemary-body-butter",
+      "name": "Bare Rosemary Body Butter",
+      "description": "A rich hydrating cream to treat eczema and psoriasis , as well as boils, cuts and acne. Balances the oil production of the skin and aids in healing of wounds.",
+      "ingredients": "",
+      "price": 30.0,
+      "price_label": "$30.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareRosemarybodybutter.webp?v=1742575389",
+      "image_alt": "Bare Rosemary Body Butter",
+      "product_url": "https://bareartisanproducts.com/products/bare-rosemary-body-butter",
+      "category_handles": [
+        "body-butters"
+      ],
+      "categories": [
+        "Body Butters"
+      ]
+    },
+    {
+      "id": "10101593178396",
+      "handle": "bare-beard-oil",
+      "name": "BARE Beard Oil",
+      "description": "Our new natural beard oil has been specially formulated to nourish, strengthen, and promote healthy hair, mustache, locks, beard growth for a beard that will truly impress. With a blend of all-natural ingredients, this oil is gentle on the skin and will leave your beard feeling soft, shiny, and refreshed.",
+      "ingredients": "",
+      "price": 35.0,
+      "price_label": "$35.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareBeardOil.webp?v=1742506067",
+      "image_alt": "BARE Beard Oil",
+      "product_url": "https://bareartisanproducts.com/products/bare-beard-oil",
+      "category_handles": [
+        "beard-oils",
+        "hair-products"
+      ],
+      "categories": [
+        "Beard Oils",
+        "Hair Products"
+      ]
+    },
+    {
+      "id": "10101593473308",
+      "handle": "6-soaps",
+      "name": "6 Soaps",
+      "description": "Save BIG while stocking up on your favorite soaps. Pay for 5 and get the 6th FREE!",
+      "ingredients": "",
+      "price": 80.0,
+      "price_label": "$80.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/6soaps.webp?v=1742572477",
+      "image_alt": "6 Soaps",
+      "product_url": "https://bareartisanproducts.com/products/6-soaps",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101594128668",
+      "handle": "bare-amber-rose-soap",
+      "name": "Bare Amber Rose Soap",
+      "description": "BARE AMBER ROSE combines the magnificent healing powers of AMBER, ROSE and ANNATTO •AMBER oil rapidly permeates the skin, improving blood circulation and providing relief from muscle, joint and arthritic pains. •The antioxidants in ROSE provides additional nourishment for the skin, strengthens cells, regenerates tissue and protects against sun damage to the skins’ elastin, while its pleasant aroma delights the senses. •Bright orange carotenoid content of the annatto reduce the signs of wrinkles, blemishes, and other imperfections. Treat your body to the holistic experience of BARE AMBER ROSE.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareamberRoseSoap.webp?v=1742574383",
+      "image_alt": "Bare Amber Rose Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-amber-rose-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101594063132",
+      "handle": "bare-citrus-blast-soap",
+      "name": "Bare Citrus Blast Soap",
+      "description": "Blast away skin problems with BARE CITRUS BLAST! Dynamite combination of citrus fruits powered with antioxidants, Zinc, Vitamins C and E, and alpha hydroxyl which is a natural exfoliator. BARE CITRUS BLAST cleanses and u nblocks pores, eliminates blackheads, chases oily skin and acne, and firms sagging skin. Energize, moisturize and rejuvenate your skin with BARE CITRUS BLAST.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareCitrusBlastSoap.webp?v=1742575777",
+      "image_alt": "Bare Citrus Blast Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-citrus-blast-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593964828",
+      "handle": "bare-coffee-cinnamon-soap",
+      "name": "Bare Coffee Cinnamon Soap",
+      "description": "Bare Coffee Cinnamon Soap provides a blend of antioxidants coupled with antiseptic, fungicidal and antibacterial properties which firms and tightens the skin. Exfoliation of dead skin removes black spots including acne scars. CINNAMON aids in acne prevention as it brings blood and nutrients to the skin’s surface, soothes and relaxes aching muscles while fungicidal properties aid in combating athletes foot. Bare your entire body to the total experience of BARE COFFEE CINNAMON.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareCoffeeCinnamonSoap.webp?v=1742575805",
+      "image_alt": "Bare Coffee Cinnamon Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-coffee-cinnamon-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593932060",
+      "handle": "bare-green-tea-cerasee-soap",
+      "name": "Bare Green Tea Cerasee Soap",
+      "description": "BARE GREEN TEA CERASEE is a combination of two leaves valued for their healing properties for centuries. GREEN TEA has an abundance of antioxidant properties which fights signs of ageing , helps prevent sun damage and boosts the skin’s elasticity. CERASEE has been used by herbalists as a natural cleanser because of the soap-like quality of its leaves when wet and has been used in the treatment of a number of skin problems including eczema. Combined with all this goodness is cancer fighting Frankincense oil Bask in the revitalizing feel of BARE GREEN TEA CERASEE",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareGreenteaCeraceesoap.webp?v=1742575691",
+      "image_alt": "Bare Green Tea Cerasee Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-green-tea-cerasee-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593899292",
+      "handle": "bare-hemp-cedar-soap",
+      "name": "Bare Hemp Cedar Soap",
+      "description": "BARE HEMP CEDAR protects the skin from moisture loss while alleviating eczema, acne, dermatitis, and psoriasis. Skin nourishment is enhanced by the OMEGA3 and OMEGA6 essential fatty acids in HEMP. The aromatic properties of CEDAR relax the skin and senses. Discover and enjoy the moisturizing, toning, soothing effects of BARE HEMP CEDAR.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareHempCedarSoap.webp?v=1742575643",
+      "image_alt": "Bare Hemp Cedar Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-hemp-cedar-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593833756",
+      "handle": "bare-lavender-lemon-balm-paprika-soap",
+      "name": "Bare Lavender Lemon Balm Paprika Soap",
+      "description": "BARE LAVENDER LEMON BALM PAPRIKA takes you into a world of total relaxation free from skin infections. PAPRIKA’s Vitamins A, E and C promote collagen production keeping skin plump and firm. The antibacterial, antiseptic, antiviral properties and the soothing, relaxing fragrance of both LAVENDER and LEMON BALM treats your body to a cleansing aroma therapeutic experience each time you use BARE LAVENDER LEMON BALM PAPRIKA.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareLavenderLemonBalmpaprika.webp?v=1742572950",
+      "image_alt": "Bare Lavender Lemon Balm Paprika Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-lavender-lemon-balm-paprika-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593800988",
+      "handle": "bare-lemongrass-moringa-soap",
+      "name": "Bare Lemongrass Moringa Soap",
+      "description": "BARE LEMON GRASS MORINGA is a carefully balanced blend of skin cleansing, muscle and tissue toning properties found in LEMON GRASS combined with the moisturizing and nourishing properties of MORINGA. The highly absorbent oil in MORINGA ensures delivery of over 30 antioxidants to the skin. Bare your skin to the cleansing, toning, moisturizing power of BARE LEMON GRASS MORINGA.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareLemongressMoringaSoap.webp?v=1742572870",
+      "image_alt": "Bare Lemongrass Moringa Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-lemongrass-moringa-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593768220",
+      "handle": "bare-neem-mint-soap",
+      "name": "Bare Neem Mint Soap",
+      "description": "BARE NEEM MINT combines the extraordinarily high levels of antioxidants, carotenoids and Vitamin E present in NEEM with the salicylic acid and anti-inflammatory, antibacterial, and rehydrating properties of MINT creating protection for the skin from pimple formation , environmental changes and ageing. The combined antiseptic property of both NEEM and MINT provides further protection from bacteria and skin infections. Luxuriate in the rehydrating lather of BARE NEEM MINT.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareMintSoap.webp?v=1742573176",
+      "image_alt": "Bare Neem Mint Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-neem-mint-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593735452",
+      "handle": "bare-rosemary-turmeric-soap",
+      "name": "Bare Rosemary Turmeric Soap",
+      "description": "BARE ROSEMARY TURMERIC is rich in nutrients, iron, calcium, vitamins, antioxidants which strengthens the capillaries slowing ageing effects, tightens sagging skin, stimulates circulation, and aids in new cell growth; combined with TURMERIC which has proven effective in alleviating black spots, blackheads, eczema, acne and psoriasis. BARE ROSEMARY TURMERIC protects and nourishes your skin.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareRosemaryTumerSoap.webp?v=1742572759",
+      "image_alt": "Bare Rosemary Turmeric Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-rosemary-turmeric-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593669916",
+      "handle": "bare-vanilla-nutmeg-soap",
+      "name": "Bare Vanilla Nutmeg Soap",
+      "description": "BARE VANILLA NUTMEG treats your skin to spicy smoothness. Anti-inflammatory properties calms, soothes, and promotes healing of inflamed areas and tightens pores. Antioxidants and natural Vitamin B properties of VANILLA blended with the anti-fungal and astringent properties of NUTMEG nourishes and protects your skin from acne, eczema and promotes healing. Savour the aroma and rejuvenating experience of BARE VANILLA NUTMEG",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/Barevanillanutmegsoap.webp?v=1742575595",
+      "image_alt": "Bare Vanilla Nutmeg Soap",
+      "product_url": "https://bareartisanproducts.com/products/bare-vanilla-nutmeg-soap",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593506076",
+      "handle": "box-of-4-soaps",
+      "name": "Box of 4 Soaps",
+      "description": "Make your selection of any 4 soaps, and save.",
+      "ingredients": "",
+      "price": 55.0,
+      "price_label": "$55.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/Boxof4soaps.webp?v=1742572598",
+      "image_alt": "Box of 4 Soaps",
+      "product_url": "https://bareartisanproducts.com/products/box-of-4-soaps",
+      "category_handles": [
+        "soaps"
+      ],
+      "categories": [
+        "Soaps"
+      ]
+    },
+    {
+      "id": "10101593407772",
+      "handle": "bare-facial-serum",
+      "name": "Bare Facial Serum",
+      "description": "Rejuvenate face and throat with 7 essential oils known for anti-ageing.",
+      "ingredients": "",
+      "price": 32.0,
+      "price_label": "$32.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareFacialSerum.webp?v=1742574931",
+      "image_alt": "Bare Facial Serum",
+      "product_url": "https://bareartisanproducts.com/products/bare-facial-serum",
+      "category_handles": [
+        "facial-serum"
+      ],
+      "categories": [
+        "Facial Serum"
+      ]
+    },
+    {
+      "id": "10101593309468",
+      "handle": "bare-aloe-mist",
+      "name": "Bare Aloe Mist",
+      "description": "Bare Aloe Mist is great after shave, after sun and after insect bites. The infused aloe vera Bare Aloe Mist is a dynamite combination of the anti-inflammatory properties of infused Aloe Vera gel with the moisturizing properties of Witch Hazel and Glycerin to calm, soothe and promote healing of inflamed areas, while the powerful antioxidants tighten pores - reducing acne, preventing razor bumps and creating protection from the sun’s damage. Glycerin also increases the skin’s hydration giving it a youthful, healthy glow. Bare Aloe Mist is great after shave, after sun and after insect bites. Perfect for on the go moisturizing.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00–$50.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareAloeMist.webp?v=1742569380",
+      "image_alt": "Bare Aloe Mist",
+      "product_url": "https://bareartisanproducts.com/products/bare-aloe-mist",
+      "category_handles": [
+        "skin-tonic",
+        "mist"
+      ],
+      "categories": [
+        "Skin Tonic",
+        "Mists"
+      ]
+    },
+    {
+      "id": "10101594325276",
+      "handle": "bare-rosemary-tarragon-skin-tonic",
+      "name": "Bare Rosemary Tarragon Skin Tonic",
+      "description": "Bare Skin Tonic with Rosemary and Tarragon is a carefully crafted combination that utilizes the abundance of nutrients, iron, calcium, vitamins and antioxidants to reduce the pace of ageing, tighten sagging skin, stimulate circulation and aid in new cell growth. Effective in the the treatment of acne, dermatitis, eczema and dark spots. Nourish and revitalize your skin with Bare Rosemary Skin Tonic!",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00–$50.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/RosemaryTarragonskin.webp?v=1742572672",
+      "image_alt": "Bare Rosemary Tarragon Skin Tonic",
+      "product_url": "https://bareartisanproducts.com/products/bare-rosemary-tarragon-skin-tonic",
+      "category_handles": [
+        "skin-tonic"
+      ],
+      "categories": [
+        "Skin Tonic"
+      ]
+    },
+    {
+      "id": "10101594456348",
+      "handle": "bare-tea-tree-skin-tonic",
+      "name": "Bare Tea Tree Skin Tonic",
+      "description": "Bare Skin Tonic with Tea Tree Oil soothes and rejuvenates the skin while delving deep into pores to reduce \"bacteria - friendly\" acne producing oils. The antiseptic, antibacterial and antimicrobial properties of the tea tree oil in tandem with the vitamins, minerals and beta carotene of apple cider vinegar neutralizes the consequences of aging leaving skin firm and refreshed.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00–$50.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareTeaTreeSkinTonic.webp?v=1742575149",
+      "image_alt": "Bare Tea Tree Skin Tonic",
+      "product_url": "https://bareartisanproducts.com/products/bare-tea-tree-skin-tonic",
+      "category_handles": [
+        "skin-tonic"
+      ],
+      "categories": [
+        "Skin Tonic"
+      ]
+    },
+    {
+      "id": "10825606103324",
+      "handle": "bare-hair-growth-serum",
+      "name": "Bare Hair Growth Serum",
+      "description": "Specially formulated to increase hair growth, utilizing Batana oil, Castor Oil, Rosemary and Ginger oils.",
+      "ingredients": "",
+      "price": 35.0,
+      "price_label": "$35.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/IMG_6723.jpg?v=1777308396",
+      "image_alt": "Bare Hair Growth Serum",
+      "product_url": "https://bareartisanproducts.com/products/bare-hair-growth-serum",
+      "category_handles": [
+        "hair-products"
+      ],
+      "categories": [
+        "Hair Products"
+      ]
+    },
+    {
+      "id": "10101593112860",
+      "handle": "bare-hair-tonic",
+      "name": "BARE Hair Tonic",
+      "description": "Bare hair tonic is packed with herbs needed to nourish, protect and promote hair growth. Use daily to support hair health. Enriched with Rosemary, Aloe and Ginger for a lush healthy hair.",
+      "ingredients": "",
+      "price": 30.0,
+      "price_label": "$30.00–$55.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareHairTonic.webp?v=1742505918",
+      "image_alt": "BARE Hair Tonic",
+      "product_url": "https://bareartisanproducts.com/products/bare-hair-tonic",
+      "category_handles": [
+        "hair-products"
+      ],
+      "categories": [
+        "Hair Products"
+      ]
+    },
+    {
+      "id": "10101593211164",
+      "handle": "bare-moringa-infused-in-coconut-oil",
+      "name": "Bare Moringa infused in Coconut oil",
+      "description": "Moringa, known as the “miracle tree” is loaded with minerals and vitamins. Used on the hair and scalp, it prevents hair damage, dandruff, dry and lifeless hair. It also increases blood circulation of the scalp and boosts hair growth. Moringa leave contain anti-inflammatory and antiseptic properties, helping to cure minor injuries like bruises, cuts and burns. It removes impurities and rejuvenates the skin.",
+      "ingredients": "",
+      "price": 30.0,
+      "price_label": "$30.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareMoringaInfusedinCoconutOil.webp?v=1742569084",
+      "image_alt": "Bare Moringa infused in Coconut oil",
+      "product_url": "https://bareartisanproducts.com/products/bare-moringa-infused-in-coconut-oil",
+      "category_handles": [
+        "hair-products",
+        "infused-in-coconut-oil"
+      ],
+      "categories": [
+        "Hair Products",
+        "Infused Coconut Oil"
+      ]
+    },
+    {
+      "id": "10101594259740",
+      "handle": "bare-rosemary-infused-in-coconut-oil",
+      "name": "Bare Rosemary infused in coconut oil",
+      "description": "Rosemary is rich in phytonutrients, antioxidants and essential acids. It stimulates the brain, skin and hair. Rosemary stimulates biological activity and cell growth to reduce fine lines and wrinkles. It is beneficial for treating dermatitis, eczema and psoriasis, as well as hair growth.",
+      "ingredients": "",
+      "price": 30.0,
+      "price_label": "$30.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareRosemaryinfusedincocnoutoil.webp?v=1742575260",
+      "image_alt": "Bare Rosemary infused in coconut oil",
+      "product_url": "https://bareartisanproducts.com/products/bare-rosemary-infused-in-coconut-oil",
+      "category_handles": [
+        "hair-products",
+        "infused-in-coconut-oil"
+      ],
+      "categories": [
+        "Hair Products",
+        "Infused Coconut Oil"
+      ]
+    },
+    {
+      "id": "10101594095900",
+      "handle": "bare-insect-repellent",
+      "name": "Bare Insect Repellent",
+      "description": "Made with infused Neem, Eucalyptus, Peppermint, Lemongrass and Clove oil. Safe to use on infants.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareInsectRepellent.webp?v=1742575433",
+      "image_alt": "Bare Insect Repellent",
+      "product_url": "https://bareartisanproducts.com/products/bare-insect-repellent",
+      "category_handles": [
+        "insect-repellent"
+      ],
+      "categories": [
+        "Insect Repellent"
+      ]
+    },
+    {
+      "id": "10101594358044",
+      "handle": "bare-neem-infused-in-coconut-oil",
+      "name": "Bare Neem infused in coconut oil",
+      "description": "Neem exhibits several healing properties including anti-inflammatory, antifungal, antibacterial, antiviral and anti carcinogenic. Neem has a favorable influence to treat a myriad of skin infections.",
+      "ingredients": "",
+      "price": 30.0,
+      "price_label": "$30.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareNeemInfusedinCoconutoil.webp?v=1742575204",
+      "image_alt": "Bare Neem infused in coconut oil",
+      "product_url": "https://bareartisanproducts.com/products/bare-neem-infused-in-coconut-oil",
+      "category_handles": [
+        "infused-in-coconut-oil"
+      ],
+      "categories": [
+        "Infused Coconut Oil"
+      ]
+    },
+    {
+      "id": "10101594161436",
+      "handle": "bare-natural-deodorant",
+      "name": "Bare Natural Deodorant",
+      "description": "Bare natural deodorant combines the cleansing properties of Baking soda with the detoxifying properties of Kaolin clay coupled with Basil and Ylang Ylang essential oils to provide powerful odor protection with a fresh invigorating scent.",
+      "ingredients": "",
+      "price": 30.0,
+      "price_label": "$30.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareNaturalDeodorant.webp?v=1742575355",
+      "image_alt": "Bare Natural Deodorant",
+      "product_url": "https://bareartisanproducts.com/products/bare-natural-deodorant",
+      "category_handles": [
+        "deodorant"
+      ],
+      "categories": [
+        "Deodorant"
+      ]
+    },
+    {
+      "id": "10101593538844",
+      "handle": "bare-under-eye-serum",
+      "name": "Bare Under Eye Serum",
+      "description": "Bare Under Eye serum reduces the appearance of fine lines and wrinkles, the appearance of \"crow's feet\", reduces puffiness, and restores youthful glow to eye area. Apply roller ball around eye area mornings and night after cleansing. Pat gently with finger tip to aid absorption.",
+      "ingredients": "",
+      "price": 20.0,
+      "price_label": "$20.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/Bareundereyeserum.webp?v=1742575070",
+      "image_alt": "Bare Under Eye Serum",
+      "product_url": "https://bareartisanproducts.com/products/bare-under-eye-serum",
+      "category_handles": [
+        "eye-serum"
+      ],
+      "categories": [
+        "Under Eye Serum"
+      ]
+    }
+  ]
+}
