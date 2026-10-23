@@ -53,7 +53,14 @@
 
 <section class="section story">
     <div class="wrap story-grid">
-        <div class="story-mark" aria-hidden="true">B.</div>
+        <div class="story-mark story-photo">
+            <img
+                src="{{ url_for('static', filename='images/philosophy-soaps.png') }}"
+                alt="Bare Artisan botanical soaps in colorful wrappers, arranged in a woven basket outdoors in Jamaica"
+                loading="lazy"
+                decoding="async"
+            >
+        </div>
         <div><span class="eyebrow">The island in every ritual</span><h2>A little more<br>closely considered.</h2><p class="story-copy">{{ catalog.brand.story }}</p><a class="button button-secondary" href="{{ url_for('philosophy') }}">Read our philosophy <span aria-hidden="true">↗</span></a></div>
     </div>
 </section>

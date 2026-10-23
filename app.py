@@ -316,6 +316,8 @@ def _page_context() -> dict[str, Any]:
         "featured_products": catalog["products"][:3],
         "payments": _provider_configuration(),
         "phone_number": PHONE_NUMBER,
+        "free_shipping_cents": FREE_SHIPPING_CENTS,
+        "max_quantity_per_product": MAX_QUANTITY_PER_PRODUCT,
     }
 
 

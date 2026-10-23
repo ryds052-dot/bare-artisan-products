@@ -143,7 +143,16 @@ class CatalogScraperTests(unittest.TestCase):
         self.assertIn("Bare Artisan Products — Botanical Care, Rooted in Jamaica", html)
         self.assertNotIn("{{ catalog.products", html)
         self.assertEqual(len(json.loads(page.body["data-products"])), len(catalog["products"]))
+        self.assertEqual(page.body["data-free-shipping-cents"], str(flask_app.FREE_SHIPPING_CENTS))
+        self.assertEqual(
+            page.body["data-max-quantity-per-product"],
+            str(flask_app.MAX_QUANTITY_PER_PRODUCT),
+        )
         self.assertIn("Bare Artisan Products", page.h1.get_text(" ", strip=True))
+        self.assertNotIn("B.", page.get_text())
+        home_story_image = page.select_one(".story-grid .story-photo img")
+        self.assertIsNotNone(home_story_image)
+        self.assertIn("philosophy-soaps.png", home_story_image["src"])
         for asset in ("/static/js/app.js", "/static/css/styles.css"):
             asset_response = client.get(asset)
             try:
@@ -187,6 +196,16 @@ class CatalogScraperTests(unittest.TestCase):
         philosophy = client.get("/philosophy").get_data(as_text=True)
         self.assertIn("African shea butter", philosophy)
         self.assertIn("Jamaican", philosophy)
+        philosophy_page = BeautifulSoup(philosophy, "html.parser")
+        image = philosophy_page.select_one(".story-photo img")
+        self.assertIsNotNone(image)
+        self.assertIn("philosophy-soaps.png", image["src"])
+        image_response = client.get(image["src"])
+        try:
+            self.assertEqual(image_response.status_code, 200)
+            self.assertTrue(image_response.mimetype.startswith("image/"))
+        finally:
+            image_response.close()
         concierge = BeautifulSoup(client.get("/concierge").get_data(as_text=True), "html.parser")
         self.assertTrue(
             any(

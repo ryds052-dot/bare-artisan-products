@@ -31,6 +31,8 @@
     data-paypal-enabled="{{ payments.paypal_enabled|tojson }}"
     data-stripe-enabled="{{ payments.stripe_enabled|tojson }}"
     data-stripe-publishable-key="{{ payments.stripe_publishable_key|forceescape }}"
+    data-free-shipping-cents="{{ free_shipping_cents }}"
+    data-max-quantity-per-product="{{ max_quantity_per_product }}"
 >
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="announcement">Handcrafted in Jamaica <span aria-hidden="true">·</span> Complimentary shipping on orders over $30 USD</div>
@@ -102,7 +104,7 @@
             <div class="drawer-content">
                 <div class="shipping-meter">
                     <p id="shipping-copy" class="shipping-copy" aria-live="polite">Add $30.00 USD for complimentary shipping.</p>
-                    <div class="meter-track" role="progressbar" aria-label="Free shipping progress" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0"><div id="shipping-fill" class="meter-fill"></div></div>
+                    <div class="meter-track" role="progressbar" aria-label="Free shipping progress" aria-valuemin="0" aria-valuemax="{{ free_shipping_cents / 100 }}" aria-valuenow="0"><div id="shipping-fill" class="meter-fill"></div></div>
                 </div>
                 <div id="cart-items" aria-live="polite"><p class="cart-empty">Your bag is waiting for a ritual.</p></div>
                 <section class="checkout-section" aria-labelledby="paypal-title">

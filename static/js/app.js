@@ -5,6 +5,8 @@
     const products = JSON.parse(config.products || "[]");
     const productBySku = new Map(products.map(product => [product.sku, product]));
     const cart = new Map();
+    const freeShippingCents = Number(config.freeShippingCents);
+    const maxQuantityPerProduct = Number(config.maxQuantityPerProduct);
     const drawerLayer = document.getElementById("cart-drawer");
     const drawer = drawerLayer.querySelector(".drawer");
     const cartItems = document.getElementById("cart-items");
@@ -30,9 +32,30 @@
     let paypalButtonsRendered = false;
     let paypalButtonsRendering = false;
 
+    function restoreCart() {
+        try {
+            const savedItems = JSON.parse(sessionStorage.getItem("bare-artisan-cart") || "[]");
+            if (!Array.isArray(savedItems)) return;
+            savedItems.forEach(item => {
+                if (!item || typeof item.sku !== "string") return;
+                const product = productBySku.get(item.sku);
+                if (
+                    !product
+                    || !product.available
+                    || !Number.isInteger(item.quantity)
+                    || item.quantity < 1
+                    || item.quantity > maxQuantityPerProduct
+                ) return;
+                cart.set(item.sku, { product, quantity: item.quantity });
+            });
+        } catch (error) {
+            console.warn("The saved apothecary bag could not be restored.", error);
+        }
+    }
+
     function setStatus(message, isError = false) {
         checkoutStatus.textContent = message;
-        checkoutStatus.style.color = isError ? "#f1a28b" : "";
+        checkoutStatus.classList.toggle("checkout-status--error", isError);
     }
 
     function resetStripeCheckout() {
@@ -64,8 +87,8 @@
             return;
         }
         const current = cart.get(sku)?.quantity || 0;
-        if (current >= 10) {
-            setStatus("Maximum quantity per product is 10.", true);
+        if (current >= maxQuantityPerProduct) {
+            setStatus(`Maximum quantity per product is ${maxQuantityPerProduct}.`, true);
             return;
         }
         cart.set(sku, { product, quantity: current + 1 });
@@ -80,15 +103,23 @@
         const total = totalCents();
         cartCount.textContent = String(count);
         cartTotal.textContent = `${money(total)} USD`;
-        const percentage = Math.min(100, total / 3000 * 100);
+        const percentage = Math.min(100, total / freeShippingCents * 100);
         shippingFill.style.width = `${percentage}%`;
-        progressBar.setAttribute("aria-valuenow", String(Math.min(30, total / 100)));
-        shippingCopy.textContent = total >= 3000
+        progressBar.setAttribute("aria-valuenow", String(Math.min(freeShippingCents / 100, total / 100)));
+        shippingCopy.textContent = total >= freeShippingCents
             ? "Complimentary shipping unlocked."
-            : `Add ${money(3000 - total)} USD for complimentary shipping.`;
-        shippingQualification.textContent = total >= 3000
+            : `Add ${money(freeShippingCents - total)} USD for complimentary shipping.`;
+        shippingQualification.textContent = total >= freeShippingCents
             ? "Your subtotal qualifies for complimentary shipping."
             : "Shipping is confirmed with the concierge.";
+        try {
+            sessionStorage.setItem(
+                "bare-artisan-cart",
+                JSON.stringify([...cart].map(([sku, item]) => ({ sku, quantity: item.quantity })))
+            );
+        } catch (error) {
+            console.warn("The apothecary bag could not be saved for this session.", error);
+        }
         cartItems.replaceChildren();
         if (!entries.length) {
             const empty = document.createElement("p");
@@ -121,7 +152,7 @@
             increase.type = "button";
             increase.textContent = "+";
             increase.setAttribute("aria-label", `Add one ${item.product.name}`);
-            increase.disabled = item.quantity >= 10;
+            increase.disabled = item.quantity >= maxQuantityPerProduct;
             increase.addEventListener("click", () => setQuantity(sku, item.quantity + 1));
             controls.append(decrease, quantity, increase);
             const remove = document.createElement("button");
@@ -148,6 +179,9 @@
         document.body.classList.remove("drawer-open");
         if (returnFocus instanceof HTMLElement) returnFocus.focus();
     }
+
+    restoreCart();
+    renderCart();
 
     document.querySelectorAll(".add-to-cart").forEach(button => {
         button.addEventListener("click", () => addProduct(button.dataset.sku));
@@ -207,7 +241,7 @@
         const lines = [...cart.values()].map(({ product, quantity }) =>
             `${quantity} × ${product.name} — ${money(product.price_cents * quantity)} USD`
         );
-        const shipping = total >= 3000 ? "Complimentary shipping unlocked" : "Shipping to be confirmed";
+        const shipping = total >= freeShippingCents ? "Complimentary shipping unlocked" : "Shipping to be confirmed";
         const message = [
             "Hello Bare Artisan Products, I would like to place an order:",
             "",
