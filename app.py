@@ -26,7 +26,11 @@ PHONE_NUMBER = re.sub(
 )
 if not re.fullmatch(r"\d{7,15}", PHONE_NUMBER):
     raise RuntimeError("WHATSAPP_PHONE_NUMBER must include 7 to 15 international digits.")
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+GEMINI_API_KEY = (
+    os.environ.get("GEMINI_API_KEY")
+    or os.environ.get("GOOGLE_API_KEY")
+    or ""
+).strip()
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash").strip()
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "").strip()
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "").strip()
@@ -199,12 +203,16 @@ def _provider_configuration() -> dict[str, Any]:
         "paypal_enabled": paypal_enabled,
         "paypal_client_id": PAYPAL_CLIENT_ID if paypal_enabled else "",
         "paypal_environment": PAYPAL_ENVIRONMENT,
-        "gemini_enabled": bool(GEMINI_API_KEY),
+        "gemini_enabled": bool(_gemini_api_key()),
         "stripe_enabled": stripe_enabled,
         "stripe_publishable_key": (
             STRIPE_PUBLISHABLE_KEY if stripe_enabled else ""
         ),
     }
+
+
+def _gemini_api_key() -> str:
+    return GEMINI_API_KEY or os.environ.get("GOOGLE_API_KEY", "").strip()
 
 
 def _parse_chat_messages(payload: Any) -> list[dict[str, Any]]:
@@ -273,7 +281,7 @@ def _gemini_reply(
         f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent",
         headers={
             "Content-Type": "application/json",
-            "x-goog-api-key": GEMINI_API_KEY,
+            "x-goog-api-key": _gemini_api_key(),
         },
         json={
             "systemInstruction": {
@@ -462,7 +470,7 @@ def chat_with_assistant():
     payload, error_response = _require_same_origin_json()
     if error_response:
         return error_response
-    if not GEMINI_API_KEY:
+    if not _gemini_api_key():
         return jsonify(error="The AI assistant is temporarily unavailable. Please use WhatsApp concierge."), 503
     try:
         messages = _parse_chat_messages(payload)
@@ -470,9 +478,25 @@ def chat_with_assistant():
         return jsonify(error=str(error)), 400
     try:
         answer = _gemini_reply(messages, _load_catalog())
-    except (requests.RequestException, ValueError, TypeError, KeyError):
+    except requests.HTTPError as error:
+        status_code = error.response.status_code if error.response is not None else None
+        app.logger.error("Gemini API rejected assistant request (HTTP %s).", status_code)
+        if status_code in {401, 403}:
+            message = (
+                "Gemini rejected the API key. Verify it is valid and has Gemini API access "
+                "in the Render web service environment."
+            )
+        elif status_code == 429:
+            message = "Gemini is temporarily rate limited. Please try again shortly."
+        else:
+            message = "Gemini could not answer right now. Check the Render service logs and try again."
+        return jsonify(error=message), 502
+    except requests.RequestException:
         app.logger.exception("Gemini assistant request failed.")
         return jsonify(error="The assistant could not reply just now. Please try again or contact our concierge."), 502
+    except (ValueError, TypeError, KeyError):
+        app.logger.exception("Gemini returned an invalid assistant response.")
+        return jsonify(error="Gemini returned an invalid response. Please try again or contact our concierge."), 502
 
     return jsonify(reply=answer)
 

@@ -241,6 +241,39 @@ class CatalogScraperTests(unittest.TestCase):
         self.assertEqual(invalid_messages.status_code, 400)
         self.assertEqual(long_message.status_code, 400)
 
+    def test_assistant_accepts_google_api_key_environment_name(self):
+        with (
+            patch.dict(flask_app.os.environ, {"GOOGLE_API_KEY": "google-key"}),
+            patch.object(flask_app, "GEMINI_API_KEY", ""),
+        ):
+            response = flask_app.app.test_client().get("/")
+
+        page = BeautifulSoup(response.get_data(as_text=True), "html.parser")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(page.body["data-assistant-enabled"], "true")
+        self.assertFalse(page.select_one("#assistant-input").has_attr("disabled"))
+
+    def test_assistant_reports_gemini_auth_rejection_without_leaking_response_body(self):
+        provider_error = flask_app.requests.HTTPError("provider rejected request")
+        provider_error.response = SimpleNamespace(status_code=403, text="sensitive provider detail")
+        with (
+            patch.object(flask_app, "GEMINI_API_KEY", "server-only-test-key"),
+            patch.object(flask_app._gemini_session, "post", side_effect=provider_error),
+        ):
+            response = flask_app.app.test_client().post(
+                "/api/assistant/chat",
+                json={
+                    "messages": [
+                        {"role": "user", "text": "What is in the body butter?"}
+                    ]
+                },
+                headers={"Origin": "http://localhost"},
+            )
+
+        self.assertEqual(response.status_code, 502)
+        self.assertIn("Gemini rejected the API key", response.json["error"])
+        self.assertNotIn("sensitive provider detail", response.get_data(as_text=True))
+
     def test_assistant_uses_server_catalog_and_keeps_gemini_key_server_side(self):
         api_response = SimpleNamespace(
             raise_for_status=lambda: None,
