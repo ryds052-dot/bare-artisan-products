@@ -33,6 +33,8 @@
     data-stripe-publishable-key="{{ payments.stripe_publishable_key|forceescape }}"
     data-free-shipping-cents="{{ free_shipping_cents }}"
     data-max-quantity-per-product="{{ max_quantity_per_product }}"
+    data-whatsapp-phone-number="{{ whatsapp_phone_number }}"
+    data-assistant-enabled="{{ payments.gemini_enabled|tojson }}"
 >
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="announcement">Handcrafted in Jamaica <span aria-hidden="true">·</span> Complimentary shipping on orders over $30 USD</div>
@@ -81,7 +83,7 @@
                 </div>
                 <div>
                     <h3>Jamaican concierge</h3>
-                    <p><a href="https://wa.me/{{ phone_number }}" target="_blank" rel="noopener noreferrer">(876) 287-4304</a><br><a href="mailto:baresoap876@gmail.com">baresoap876@gmail.com</a></p>
+                    <p><a href="https://wa.me/{{ phone_number }}" target="_blank" rel="noopener noreferrer">{{ phone_display }}</a><br><a href="mailto:baresoap876@gmail.com">baresoap876@gmail.com</a></p>
                 </div>
                 <div>
                     <h3>Explore</h3>
@@ -93,6 +95,31 @@
     </footer>
 
     <noscript><p class="noscript">JavaScript is needed for the shopping bag, category filters and checkout buttons.</p></noscript>
+
+    <button id="assistant-open" class="assistant-launcher" type="button" aria-expanded="false" aria-controls="assistant-panel">
+        <span aria-hidden="true">✦</span> Ask our apothecary
+    </button>
+    <section id="assistant-panel" class="assistant-panel" role="dialog" aria-labelledby="assistant-title" aria-modal="false" hidden>
+        <header class="assistant-header">
+            <div><span class="eyebrow">Bare Artisan concierge</span><h2 id="assistant-title">How can we help?</h2></div>
+            <button id="assistant-close" class="drawer-close" type="button" aria-label="Close assistant">×</button>
+        </header>
+        <div id="assistant-messages" class="assistant-messages" aria-live="polite" aria-relevant="additions text">
+            <p class="assistant-bubble assistant-bubble--answer">Welcome. Ask me about our botanical products, ingredients, prices or shipping.</p>
+        </div>
+        <p id="assistant-status" class="assistant-status" role="status" aria-live="polite">
+            {% if payments.gemini_enabled %}Product questions, answered with care.{% else %}The assistant is offline. Our WhatsApp concierge is here to help.{% endif %}
+        </p>
+        <form id="assistant-form" class="assistant-form">
+            <label class="visually-hidden" for="assistant-input">Your question</label>
+            <textarea id="assistant-input" name="question" rows="2" maxlength="300" placeholder="Ask about ingredients, routines or shipping…" required {% if not payments.gemini_enabled %}disabled{% endif %}></textarea>
+            <button id="assistant-send" class="button button-primary" type="submit" {% if not payments.gemini_enabled %}disabled{% endif %}>Send</button>
+        </form>
+        <div class="assistant-actions">
+            <button id="assistant-whatsapp" class="button whatsapp-button" type="button">Continue with WhatsApp ↗</button>
+            <span>AI replies are powered by Google Gemini. Please don’t share sensitive personal information.</span>
+        </div>
+    </section>
 
     <div id="cart-drawer" class="drawer-layer" hidden>
         <button id="drawer-backdrop" class="drawer-backdrop" type="button" aria-label="Close apothecary bag"></button>

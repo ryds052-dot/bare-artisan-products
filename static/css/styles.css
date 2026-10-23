@@ -28,7 +28,7 @@
         body.drawer-open { overflow: hidden; }
         a { color: inherit; }
         button { color: inherit; font: inherit; }
-        button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible {
+        button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible {
             outline: 2px solid var(--gold-bright);
             outline-offset: 4px;
         }
@@ -297,6 +297,60 @@
         #stripe-payment-element { min-height: 42px; }
         .whatsapp-button { width: 100%; margin-top: .75rem; background: #294b35; color: white; }
         .whatsapp-button:hover { background: #346044; }
+        .assistant-launcher {
+            position: fixed;
+            z-index: 30;
+            right: 1.4rem;
+            bottom: 1.4rem;
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            gap: .55rem;
+            padding: 0 1.15rem;
+            border: 1px solid rgba(237, 202, 138, .55);
+            border-radius: 99px;
+            background: rgba(24, 31, 25, .94);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, .4);
+            color: var(--gold-bright);
+            cursor: pointer;
+            font-size: .66rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            backdrop-filter: blur(20px);
+        }
+        .assistant-panel {
+            position: fixed;
+            z-index: 40;
+            right: 1.4rem;
+            bottom: 5.3rem;
+            display: flex;
+            width: min(390px, calc(100vw - 2rem));
+            max-height: min(620px, calc(100dvh - 7rem));
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: rgba(17, 16, 14, .97);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
+            backdrop-filter: blur(20px);
+        }
+        .assistant-panel[hidden] { display: none; }
+        .assistant-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--line); }
+        .assistant-header h2 { margin: .25rem 0 0; font-size: 1.65rem; }
+        .assistant-header .eyebrow { font-size: .54rem; }
+        .assistant-messages { display: flex; min-height: 150px; flex: 1; flex-direction: column; gap: .7rem; overflow-y: auto; padding: 1rem; }
+        .assistant-bubble { max-width: 88%; margin: 0; padding: .75rem .85rem; border: 1px solid var(--line); font-size: .72rem; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+        .assistant-bubble--answer { align-self: flex-start; background: rgba(76, 96, 72, .19); color: var(--cream); }
+        .assistant-bubble--question { align-self: flex-end; border-color: rgba(214, 172, 104, .35); background: rgba(214, 172, 104, .1); color: var(--gold-bright); }
+        .assistant-status { min-height: 1.2rem; margin: 0; padding: 0 1rem .6rem; color: var(--muted); font-size: .62rem; }
+        .assistant-form { display: grid; grid-template-columns: 1fr auto; gap: .5rem; padding: 0 1rem 1rem; }
+        .assistant-form textarea { width: 100%; min-height: 48px; resize: vertical; border: 1px solid var(--line); background: rgba(255, 255, 255, .04); padding: .7rem; color: var(--cream); font: .72rem/1.5 var(--sans); }
+        .assistant-form .button { align-self: end; min-height: 42px; padding: .6rem .8rem; font-size: .58rem; }
+        .assistant-form .button:disabled, .assistant-form textarea:disabled { cursor: not-allowed; opacity: .55; }
+        .assistant-actions { padding: 0 1rem 1rem; }
+        .assistant-actions .whatsapp-button { margin: 0; }
+        .assistant-actions > span { display: block; margin-top: .5rem; color: var(--muted); font-size: .58rem; text-align: center; }
+        .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
         .noscript { margin: 1rem; padding: .8rem; border: 1px solid #8b5748; color: #f1b39d; font-size: .75rem; }
         [hidden] { display: none !important; }
         @media (max-width: 900px) {
@@ -346,6 +400,8 @@
             .footer-grid { grid-template-columns: 1fr; gap: 1.4rem; }
             .drawer-header, .drawer-footer { padding-inline: 1rem; }
             .drawer-content { padding-inline: 1rem; }
+            .assistant-launcher { right: 1rem; bottom: 1rem; }
+            .assistant-panel { right: 1rem; bottom: 4.8rem; max-height: calc(100dvh - 6rem); }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }

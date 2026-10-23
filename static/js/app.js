@@ -17,6 +17,14 @@
     const progressBar = shippingFill.parentElement;
     const shippingQualification = document.getElementById("shipping-qualification");
     const checkoutStatus = document.getElementById("checkout-status");
+    const assistantPanel = document.getElementById("assistant-panel");
+    const assistantOpen = document.getElementById("assistant-open");
+    const assistantClose = document.getElementById("assistant-close");
+    const assistantForm = document.getElementById("assistant-form");
+    const assistantInput = document.getElementById("assistant-input");
+    const assistantMessages = document.getElementById("assistant-messages");
+    const assistantStatus = document.getElementById("assistant-status");
+    const assistantConversation = [];
     const money = cents => `$${(cents / 100).toFixed(2)}`;
     const totalCents = () => [...cart.values()].reduce(
         (sum, item) => sum + item.product.price_cents * item.quantity,
@@ -31,6 +39,8 @@
     let stripeIntent = null;
     let paypalButtonsRendered = false;
     let paypalButtonsRendering = false;
+    let assistantReturnFocus = null;
+    let assistantBusy = false;
 
     function restoreCart() {
         try {
@@ -180,6 +190,78 @@
         if (returnFocus instanceof HTMLElement) returnFocus.focus();
     }
 
+    function addAssistantMessage(role, text) {
+        const message = document.createElement("p");
+        message.className = `assistant-bubble assistant-bubble--${role === "user" ? "question" : "answer"}`;
+        message.textContent = text;
+        assistantMessages.append(message);
+        assistantMessages.scrollTop = assistantMessages.scrollHeight;
+        return message;
+    }
+
+    assistantOpen.addEventListener("click", () => {
+        assistantReturnFocus = document.activeElement;
+        assistantPanel.hidden = false;
+        assistantOpen.setAttribute("aria-expanded", "true");
+        assistantClose.focus();
+    });
+    assistantClose.addEventListener("click", () => {
+        assistantPanel.hidden = true;
+        assistantOpen.setAttribute("aria-expanded", "false");
+        if (assistantReturnFocus instanceof HTMLElement) assistantReturnFocus.focus();
+    });
+
+    assistantForm.addEventListener("submit", async event => {
+        event.preventDefault();
+        const text = assistantInput.value.trim();
+        if (!text || assistantBusy || config.assistantEnabled !== "true") return;
+
+        assistantBusy = true;
+        assistantInput.value = "";
+        if (assistantConversation.length >= 8) assistantConversation.splice(0, 2);
+        assistantConversation.push({ role: "user", text });
+        const questionBubble = addAssistantMessage("user", text);
+        assistantStatus.textContent = "A moment while I look into that…";
+        document.getElementById("assistant-send").disabled = true;
+        try {
+            const response = await fetch("/api/assistant/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ messages: assistantConversation.slice(-8) })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || "The assistant could not reply.");
+            assistantConversation.push({ role: "model", text: result.reply });
+            addAssistantMessage("assistant", result.reply);
+            assistantStatus.textContent = "Ask another question, or continue with our concierge.";
+        } catch (error) {
+            console.error("The botanical assistant could not reply.", error);
+            assistantConversation.pop();
+            questionBubble.remove();
+            assistantStatus.textContent = error.message || "The assistant could not reply. Please try again.";
+        } finally {
+            assistantBusy = false;
+            document.getElementById("assistant-send").disabled = false;
+            assistantInput.focus();
+        }
+    });
+
+    document.getElementById("assistant-whatsapp").addEventListener("click", () => {
+        const transcript = assistantConversation.map(message =>
+            `${message.role === "user" ? "You" : "Apothecary assistant"}: ${message.text.slice(0, 160)}`
+        );
+        const message = [
+            "Hello Bare Artisan Products, I have a question for the concierge.",
+            "",
+            ...transcript
+        ].join("\n");
+        window.open(
+            `https://wa.me/${config.whatsappPhoneNumber}?text=${encodeURIComponent(message)}`,
+            "_blank",
+            "noopener,noreferrer"
+        );
+    });
+
     restoreCart();
     renderCart();
 
@@ -190,6 +272,10 @@
     document.getElementById("bag-close").addEventListener("click", closeDrawer);
     document.getElementById("drawer-backdrop").addEventListener("click", closeDrawer);
     document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !assistantPanel.hidden) {
+            assistantClose.click();
+            return;
+        }
         if (event.key === "Escape" && !drawerLayer.hidden) closeDrawer();
         if (event.key === "Tab" && !drawerLayer.hidden) {
             const focusable = [...drawer.querySelectorAll("button:not(:disabled), a[href], summary")];
@@ -251,7 +337,7 @@
             `Shipping: ${shipping}`
         ].join("\n");
         window.open(
-            `https://wa.me/18762874304?text=${encodeURIComponent(message)}`,
+            `https://wa.me/${config.whatsappPhoneNumber}?text=${encodeURIComponent(message)}`,
             "_blank",
             "noopener,noreferrer"
         );
