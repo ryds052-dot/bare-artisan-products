@@ -119,7 +119,8 @@ class CatalogScraperTests(unittest.TestCase):
         response = flask_app.app.test_client().get("/")
 
         self.assertEqual(response.status_code, 200)
-        page = BeautifulSoup(response.get_data(as_text=True), "html.parser")
+        html = response.get_data(as_text=True)
+        page = BeautifulSoup(html, "html.parser")
         self.assertEqual(len(page.select(".product-card")), 9)
         self.assertEqual(
             page.select_one(".product-card h3").get_text(strip=True),
@@ -128,6 +129,14 @@ class CatalogScraperTests(unittest.TestCase):
         self.assertEqual(len(page.select("[data-filter]")), 5)
         self.assertIn("$30.00 USD", page.get_text())
         self.assertIn("Jamaica", page.get_text())
+        self.assertIn("static/storefront.js", html)
+        self.assertNotIn("{{ catalog.products", html)
+        self.assertEqual(len(json.loads(page.body["data-products"])), 9)
+        script_response = flask_app.app.test_client().get("/static/storefront.js")
+        try:
+            self.assertEqual(script_response.status_code, 200)
+        finally:
+            script_response.close()
 
     def test_storefront_catalog_has_the_requested_nine_products_and_prices(self):
         catalog = flask_app._load_catalog()
