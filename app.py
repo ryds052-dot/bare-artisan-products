@@ -323,6 +323,12 @@ def create_paypal_order():
                 "amount": {
                     "currency_code": "USD",
                     "value": f"{Decimal(total_cents) / 100:.2f}",
+                    "breakdown": {
+                        "item_total": {
+                            "currency_code": "USD",
+                            "value": f"{Decimal(total_cents) / 100:.2f}",
+                        }
+                    },
                 },
                 "items": [
                     {
@@ -330,7 +336,7 @@ def create_paypal_order():
                         "quantity": str(item["quantity"]),
                         "unit_amount": {
                             "currency_code": "USD",
-                            "value": f"{item['price_cents'] / 100:.2f}",
+                            "value": f"{Decimal(item['price_cents']) / 100:.2f}",
                         },
                     }
                     for item in items

@@ -258,7 +258,39 @@ class CatalogScraperTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         order = create_order.call_args.args[2]
-        self.assertEqual(order["purchase_units"][0]["amount"]["value"], "60.00")
+        purchase_unit = order["purchase_units"][0]
+        self.assertEqual(purchase_unit["amount"]["value"], "60.00")
+        self.assertEqual(
+            purchase_unit["amount"]["breakdown"]["item_total"]["value"],
+            "60.00",
+        )
+
+    def test_paypal_rest_requests_use_oauth_bearer_token(self):
+        token_response = SimpleNamespace(
+            raise_for_status=lambda: None,
+            json=lambda: {"access_token": "oauth-access-token"},
+        )
+        api_response = SimpleNamespace(
+            raise_for_status=lambda: None,
+            json=lambda: {"id": "PAYPAL-ORDER-1"},
+        )
+        with (
+            patch.object(flask_app, "PAYPAL_CLIENT_ID", "client-id"),
+            patch.object(flask_app, "PAYPAL_CLIENT_SECRET", "client-secret"),
+            patch.object(flask_app._paypal_session, "post", return_value=token_response),
+            patch.object(
+                flask_app._paypal_session,
+                "request",
+                return_value=api_response,
+            ) as paypal_request,
+        ):
+            result = flask_app._paypal_request("POST", "/v2/checkout/orders", {})
+
+        self.assertEqual(result["id"], "PAYPAL-ORDER-1")
+        self.assertEqual(
+            paypal_request.call_args.kwargs["headers"]["Authorization"],
+            "Bearer oauth-access-token",
+        )
 
     def test_paypal_capture_requires_same_origin_and_configured_credentials(self):
         client = flask_app.app.test_client()
@@ -298,6 +330,7 @@ class CatalogScraperTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("www.paypal.com/sdk/js", html)
         self.assertIn("js.stripe.com/v3/", html)
+        self.assertIn('id="paypal-buttons"', html)
         self.assertIn("paypal-client-id", html)
         self.assertIn("pk_test_publishable", html)
         self.assertNotIn("paypal-server-secret", html)

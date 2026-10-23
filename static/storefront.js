@@ -27,6 +27,8 @@
     let stripeClient = null;
     let stripeElements = null;
     let stripeIntent = null;
+    let paypalButtonsRendered = false;
+    let paypalButtonsRendering = false;
 
     function setStatus(message, isError = false) {
         checkoutStatus.textContent = message;
@@ -138,6 +140,7 @@
         drawerLayer.hidden = false;
         document.body.classList.add("drawer-open");
         document.getElementById("bag-close").focus();
+        initializePayPalButtons();
     }
 
     function closeDrawer() {
@@ -219,54 +222,57 @@
         );
     });
 
-    if (config.paypalEnabled === "true") {
-        let paypalReadyCheck;
-        const paypalLoadTimeout = window.setTimeout(() => {
-            window.clearInterval(paypalReadyCheck);
+    function initializePayPalButtons() {
+        if (config.paypalEnabled !== "true" || paypalButtonsRendered || paypalButtonsRendering) {
+            return;
+        }
+        if (!window.paypal) {
             setStatus("PayPal did not load. Please try another checkout option.", true);
-        }, 15000);
-        paypalReadyCheck = window.setInterval(() => {
-            if (!window.paypal) return;
-            window.clearInterval(paypalReadyCheck);
-            window.clearTimeout(paypalLoadTimeout);
-            window.paypal.Buttons({
-                style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
-                createOrder: async () => {
-                    if (!cart.size) throw new Error("Add a product to your bag before checkout.");
-                    const response = await fetch("/api/paypal/orders", {
+            return;
+        }
+
+        paypalButtonsRendering = true;
+        window.paypal.Buttons({
+            style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
+            createOrder: async () => {
+                if (!cart.size) throw new Error("Add a product to your bag before checkout.");
+                const response = await fetch("/api/paypal/orders", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ items: orderItems() })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || "PayPal could not create the order.");
+                return result.id;
+            },
+            onApprove: async data => {
+                const response = await fetch(
+                    `/api/paypal/orders/${encodeURIComponent(data.orderID)}/capture`,
+                    {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ items: orderItems() })
-                    });
-                    const result = await response.json();
-                    if (!response.ok) throw new Error(result.error || "PayPal could not create the order.");
-                    return result.id;
-                },
-                onApprove: async data => {
-                    const response = await fetch(
-                        `/api/paypal/orders/${encodeURIComponent(data.orderID)}/capture`,
-                        {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: "{}"
-                        }
-                    );
-                    const result = await response.json();
-                    if (!response.ok) throw new Error(result.error || "PayPal could not capture the payment.");
-                    setStatus("PayPal payment completed. Thank you for your order.");
-                    cart.clear();
-                    resetStripeCheckout();
-                    renderCart();
-                },
-                onError: error => {
-                    console.error("PayPal checkout failed.", error);
-                    setStatus(error.message || "PayPal checkout failed. Please try again.", true);
-                }
-            }).render("#paypal-buttons").catch(error => {
-                console.error("PayPal buttons could not be loaded.", error);
-                setStatus("PayPal buttons could not be loaded. Please try another checkout option.", true);
-            });
-        }, 100);
+                        body: "{}"
+                    }
+                );
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || "PayPal could not capture the payment.");
+                cart.clear();
+                resetStripeCheckout();
+                renderCart();
+                setStatus("PayPal payment completed. Thank you for your order.");
+            },
+            onError: error => {
+                console.error("PayPal checkout failed.", error);
+                setStatus(error.message || "PayPal checkout failed. Please try again.", true);
+            }
+        }).render("#paypal-buttons").then(() => {
+            paypalButtonsRendered = true;
+        }).catch(error => {
+            console.error("PayPal buttons could not be rendered.", error);
+            setStatus("PayPal buttons could not be loaded. Please try another checkout option.", true);
+        }).finally(() => {
+            paypalButtonsRendering = false;
+        });
     }
 
     if (config.stripeEnabled === "true") {
