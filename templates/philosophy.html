@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Our Philosophy | Bare Artisan Products — Botanical Care, Rooted in Jamaica{% endblock %}
+{% block meta_description %}Explore Bare Artisan Products’ botanical philosophy: considered ingredients, raw African shea butter, and Jamaican herbal traditions.{% endblock %}
+{% block content %}
+<section class="hero page-hero">
+    <div class="wrap">
+        <span class="eyebrow">Our philosophy</span>
+        <h1>Rooted in the<br><em>living island.</em></h1>
+        <p class="hero-copy">We believe daily care can honor the ingredients, knowledge and place that shape it.</p>
+    </div>
+</section>
+<section class="section">
+    <div class="wrap story-grid">
+        <div class="story-mark" aria-hidden="true">B.</div>
+        <div>
+            <span class="eyebrow">A thoughtful approach</span>
+            <h2>Plant-led.<br>Purposefully made.</h2>
+            <p class="story-copy">Our philosophy is to keep formulations close to the botanicals and familiar ingredients that inspired them, and to avoid unnecessary synthetic additions. Please consult each product’s current ingredient list for its complete formulation.</p>
+        </div>
+    </div>
+</section>
+<section class="section story">
+    <div class="wrap">
+        <div class="section-heading">
+            <div><span class="eyebrow">Ingredients with a story</span><h2>From rich shea<br>to Jamaican herbs.</h2></div>
+            <p class="section-intro">Texture, tradition and place inform the way we think about everyday body care.</p>
+        </div>
+        <div class="product-grid philosophy-grid">
+            <article class="faq-card"><span class="product-category">Raw African shea</span><h3 class="product-title">A nourishing foundation.</h3><p class="story-copy">Raw African shea butter is valued for its rich, comforting texture and is a signature ingredient in selected body-butter formulations.</p></article>
+            <article class="faq-card"><span class="product-category">Jamaican botanicals</span><h3 class="product-title">Harvested with care.</h3><p class="story-copy">Jamaica’s herbal traditions inspire our approach. We aim to source and work with local herbs thoughtfully, respecting the people and practices connected to them.</p></article>
+            <article class="faq-card"><span class="product-category">Ingredient transparency</span><h3 class="product-title">Know what you choose.</h3><p class="story-copy">Formulations can vary by product. Review the live product details and ingredient list before use, especially if you have sensitivities.</p><a href="{{ url_for('collection') }}">Explore the current collection ↗</a></article>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="wrap story-grid">
+        <div>
+            <span class="eyebrow">Made with care in Jamaica</span>
+            <h2>A story shaped<br>by the island.</h2>
+            <p class="story-copy">{{ catalog.brand.story }}</p>
+            <a class="button button-primary" href="{{ url_for('collection') }}">Explore the collection</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

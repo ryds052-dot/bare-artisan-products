@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}The Collection | Bare Artisan Products — Botanical Care, Rooted in Jamaica{% endblock %}
+{% block meta_description %}Shop all {{ catalog.products|length }} active botanical skincare formulations from Bare Artisan Products, made with care in Jamaica.{% endblock %}
+{% block content %}
+<section class="hero page-hero">
+    <div class="wrap">
+        <span class="eyebrow">The botanical collection</span>
+        <h1>Find your<br><em>daily ritual.</em></h1>
+        <p class="hero-copy">Browse {{ catalog.products|length }} currently available formulations, with live catalog prices and details from the official store.</p>
+    </div>
+</section>
+<section id="catalog-grid" class="section">
+    <div class="wrap">
+        <div class="filter-list" role="group" aria-label="Filter products by category">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All goods <span>({{ catalog.products|length }})</span></button>
+            {% for category in catalog.categories %}
+            <button class="filter-button" type="button" data-filter="{{ category.key }}" aria-pressed="false">{{ category.name }} <span>({{ category.count }})</span></button>
+            {% endfor %}
+        </div>
+        <div class="product-grid" aria-live="polite">
+            {% for product in catalog.products %}
+            <article class="product-card" data-categories="{{ product.category_keys|join(',') }}">
+                <div class="product-image">
+                    <a href="{{ product.product_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ product.name }} at Bare Artisan Products">
+                        {% if product.image_url %}<img src="{{ product.image_url }}" alt="{{ product.image_alt }}" loading="lazy" decoding="async">{% endif %}
+                    </a>
+                </div>
+                <div class="product-body">
+                    <span class="product-category">{{ product.category_label }}</span>
+                    <h2 class="product-title">{{ product.name }}</h2>
+                    <p class="product-description">{{ product.description }}</p>
+                    <details class="product-details">
+                        <summary>Ingredients & details</summary>
+                        <p class="product-ingredients"><strong>Product details:</strong> {{ product.description }}</p>
+                        {% if product.ingredients %}<p class="product-ingredients"><strong>Ingredients:</strong> {{ product.ingredients }}</p>{% endif %}
+                        <a class="product-ingredients" href="{{ product.product_url }}" target="_blank" rel="noopener noreferrer">View product at the official store ↗</a>
+                    </details>
+                    <div class="product-footer">
+                        <span class="product-price">{{ product.price_label }}</span>
+                        {% if product.available %}<button class="button button-primary add-button add-to-cart" type="button" data-sku="{{ product.sku }}">Add to bag</button>{% else %}<button class="button add-button" type="button" disabled>Currently unavailable</button>{% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

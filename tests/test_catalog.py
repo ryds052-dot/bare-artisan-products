@@ -66,6 +66,14 @@ class CatalogScraperTests(unittest.TestCase):
                         {"handle": "beard-oils", "description": ""},
                     ]
                 }
+            if path == "/collections/all/products.json?limit=250":
+                unavailable = {
+                    **self.product,
+                    "id": 456,
+                    "handle": "unavailable-soap",
+                    "variants": [{"price": "12.00", "available": False}],
+                }
+                return {"products": [self.product, unavailable]}
             if path == "/collections/body-butters/products.json?limit=250":
                 return {"products": [self.product]}
             if path == "/collections/beard-oils/products.json?limit=250":
@@ -116,43 +124,96 @@ class CatalogScraperTests(unittest.TestCase):
             self.assertEqual(json.loads(target.read_text(encoding="utf-8")), {"products": []})
 
     def test_flask_template_renders_the_catalog_snapshot(self):
-        response = flask_app.app.test_client().get("/")
+        client = flask_app.app.test_client()
+        response = client.get("/")
 
         self.assertEqual(response.status_code, 200)
         html = response.get_data(as_text=True)
         page = BeautifulSoup(html, "html.parser")
-        self.assertEqual(len(page.select(".product-card")), 9)
+        catalog = flask_app._load_catalog()
+        self.assertEqual(len(page.select(".product-card")), 3)
         self.assertEqual(
             page.select_one(".product-card h3").get_text(strip=True),
-            "Bare Dream Cream",
+            catalog["products"][0]["name"],
         )
-        self.assertEqual(len(page.select("[data-filter]")), 5)
         self.assertIn("$30.00 USD", page.get_text())
         self.assertIn("Jamaica", page.get_text())
-        self.assertIn("static/storefront.js", html)
+        self.assertIn("static/js/app.js", html)
+        self.assertIn("static/css/styles.css", html)
+        self.assertIn("Bare Artisan Products — Botanical Care, Rooted in Jamaica", html)
         self.assertNotIn("{{ catalog.products", html)
-        self.assertEqual(len(json.loads(page.body["data-products"])), 9)
-        script_response = flask_app.app.test_client().get("/static/storefront.js")
-        try:
-            self.assertEqual(script_response.status_code, 200)
-        finally:
-            script_response.close()
+        self.assertEqual(len(json.loads(page.body["data-products"])), len(catalog["products"]))
+        self.assertIn("Bare Artisan Products", page.h1.get_text(" ", strip=True))
+        for asset in ("/static/js/app.js", "/static/css/styles.css"):
+            asset_response = client.get(asset)
+            try:
+                self.assertEqual(asset_response.status_code, 200)
+            finally:
+                asset_response.close()
 
-    def test_storefront_catalog_has_the_requested_nine_products_and_prices(self):
-        catalog = flask_app._load_catalog()
-
-        self.assertEqual(len(catalog["products"]), 9)
+        collection_response = client.get("/collection")
+        self.assertEqual(collection_response.status_code, 200)
+        collection_page = BeautifulSoup(collection_response.get_data(as_text=True), "html.parser")
         self.assertEqual(
-            [product["name"] for product in catalog["products"]],
-            [spec[1] for spec in flask_app.PRODUCT_SPEC],
+            len(collection_page.select(".product-card")),
+            len(catalog["products"]),
         )
         self.assertEqual(
-            [product["price_cents"] for product in catalog["products"]],
-            [spec[2] for spec in flask_app.PRODUCT_SPEC],
+            len(collection_page.select("[data-filter]")),
+            len(catalog["categories"]) + 1,
+        )
+
+    def test_all_public_pages_inherit_navigation_bag_and_branding(self):
+        client = flask_app.app.test_client()
+        for path, heading in (
+            ("/", "Bare Artisan Products"),
+            ("/collection", "Find your"),
+            ("/philosophy", "Rooted in the"),
+            ("/concierge", "Here to help"),
+        ):
+            with self.subTest(path=path):
+                response = client.get(path)
+                self.assertEqual(response.status_code, 200)
+                page = BeautifulSoup(response.get_data(as_text=True), "html.parser")
+                self.assertIn(
+                    "Bare Artisan Products — Botanical Care, Rooted in Jamaica",
+                    page.title.string,
+                )
+                self.assertIsNotNone(page.select_one("#cart-drawer"))
+                self.assertIsNotNone(page.select_one("#shipping-fill"))
+                self.assertEqual(len(page.select(".desktop-nav a")), 4)
+                self.assertIn(heading, page.h1.get_text(" ", strip=True))
+
+        philosophy = client.get("/philosophy").get_data(as_text=True)
+        self.assertIn("African shea butter", philosophy)
+        self.assertIn("Jamaican", philosophy)
+        concierge = BeautifulSoup(client.get("/concierge").get_data(as_text=True), "html.parser")
+        self.assertTrue(
+            any(
+                "wa.me/18762874304" in link.get("href", "")
+                for link in concierge.select("a[href]")
+            )
+        )
+
+    def test_storefront_catalog_includes_all_active_snapshot_products(self):
+        catalog = flask_app._load_catalog()
+        with flask_app.CATALOG_PATH.open(encoding="utf-8") as catalog_file:
+            snapshot = json.load(catalog_file)
+        active_products = [
+            product for product in snapshot["products"] if product["available"]
+        ]
+
+        self.assertEqual(len(catalog["products"]), len(active_products))
+        self.assertTrue(all(product["available"] for product in catalog["products"]))
+        self.assertIn("bare-lip-balm", {product["sku"] for product in catalog["products"]})
+        self.assertEqual(len(active_products), 30)
+        self.assertEqual(
+            {product["sku"] for product in catalog["products"]},
+            {product["handle"] for product in active_products},
         )
         self.assertEqual(
             [category["name"] for category in catalog["categories"]],
-            ["Body Butters", "Serums & Facial", "Soaps & Body", "Oils & Mists"],
+            ["Body Butters", "Serums", "Soaps", "Oils & Mists", "Other Essentials"],
         )
 
     def test_cart_uses_server_prices_and_rejects_unknown_products(self):
@@ -172,10 +233,35 @@ class CatalogScraperTests(unittest.TestCase):
         )
 
         self.assertEqual(flask_app._cart_total_cents(items), 6000)
+        lip_balm = next(
+            product for product in catalog["products"] if product["sku"] == "bare-lip-balm"
+        )
+        additional_item = flask_app._parse_cart(
+            {"items": [{"sku": "bare-lip-balm", "quantity": 2}]},
+            catalog,
+        )
+        self.assertEqual(
+            flask_app._cart_total_cents(additional_item),
+            lip_balm["price_cents"] * 2,
+        )
         with self.assertRaises(flask_app.InvalidCart):
             flask_app._parse_cart(
                 {"items": [{"sku": "not-a-product", "quantity": 1}]},
                 catalog,
+            )
+        unavailable_catalog = {
+            **catalog,
+            "products": [
+                {**product, "available": False}
+                if product["sku"] == "bare-lip-balm"
+                else product
+                for product in catalog["products"]
+            ],
+        }
+        with self.assertRaises(flask_app.InvalidCart):
+            flask_app._parse_cart(
+                {"items": [{"sku": "bare-lip-balm", "quantity": 1}]},
+                unavailable_catalog,
             )
 
     def test_payment_endpoints_reject_cross_origin_and_missing_configuration(self):
@@ -332,6 +418,7 @@ class CatalogScraperTests(unittest.TestCase):
         self.assertIn("js.stripe.com/v3/", html)
         self.assertIn('id="paypal-buttons"', html)
         self.assertIn("paypal-client-id", html)
+        self.assertNotIn("client-id=sb", html)
         self.assertIn("pk_test_publishable", html)
         self.assertNotIn("paypal-server-secret", html)
         self.assertNotIn("stripe-server-secret", html)

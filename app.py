@@ -41,39 +41,26 @@ if STRIPE_SECRET_KEY:
 
 logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO").upper())
 
-# These are the nine storefront SKUs and prices supplied for this build. Payment
-# providers always receive these server-side values, never prices from the browser.
-PRODUCT_SPEC = (
-    ("bare-dream-cream", "Bare Dream Cream", 3000, "butters"),
-    ("bare-rosemary-body-butter", "Bare Rosemary Body Butter", 3000, "butters"),
-    ("bare-facial-serum", "7-Essential Oil Facial Serum", 2800, "serums"),
-    ("bare-under-eye-serum", "Bare Under-Eye Renewal Serum", 2400, "serums"),
-    ("bare-citrus-blast-soap", "Bare Citrus Blast Soap", 1200, "soaps"),
-    ("bare-natural-deodorant", "Bare Aluminum-Free Deodorant", 1600, "soaps"),
-    ("bare-neem-infused-in-coconut-oil", "Organic Neem Infused Coconut Oil", 2200, "oils"),
-    ("bare-aloe-mist", "Bare Aloe Soothing Mist", 1800, "oils"),
-    ("bare-insect-repellent", "Neem & Lemongrass Repellent", 2000, "oils"),
-)
-
 CATEGORY_SPEC = (
     ("Body Butters", "butters"),
-    ("Serums & Facial", "serums"),
-    ("Soaps & Body", "soaps"),
+    ("Serums", "serums"),
+    ("Soaps", "soaps"),
     ("Oils & Mists", "oils"),
+    ("Other Essentials", "other"),
 )
 
-INGREDIENT_OVERRIDES = {
-    "bare-citrus-blast-soap": (
-        "Citrus fruit, zinc, vitamins C and E, and alpha hydroxy acids"
-    ),
-    "bare-natural-deodorant": (
-        "Baking soda, kaolin clay, basil, and ylang ylang essential oils"
-    ),
-    "bare-neem-infused-in-coconut-oil": "Neem infused in coconut oil",
-    "bare-aloe-mist": "Infused aloe vera, witch hazel, and glycerin",
-    "bare-insect-repellent": (
-        "Neem, eucalyptus, peppermint, lemongrass, and clove oils"
-    ),
+CATEGORY_GROUPS = {
+    "body-butters": "butters",
+    "beard-oils": "oils",
+    "facial-serum": "serums",
+    "eye-serum": "serums",
+    "soaps": "soaps",
+    "deodorant": "soaps",
+    "skin-tonic": "oils",
+    "hair-products": "oils",
+    "insect-repellent": "oils",
+    "infused-in-coconut-oil": "oils",
+    "mist": "oils",
 }
 
 _paypal_session = requests.Session()
@@ -99,64 +86,93 @@ def _load_catalog() -> dict[str, Any]:
         if isinstance(category, dict) and category.get("handle")
     }
 
+    category_names = {key: name for name, key in CATEGORY_SPEC}
     catalog_products = []
-    for handle, name, price_cents, category_key in PRODUCT_SPEC:
-        source = source_products.get(handle)
-        if source is None:
-            raise RuntimeError(
-                f"Product '{handle}' is missing from data/catalog.json. "
-                "Run scripts/scrape_catalog.py."
-            )
+    for source in source_products.values():
+        if not source.get("available"):
+            continue
 
-        source_category_handles = {
-            "butters": ("body-butters",),
-            "serums": ("facial-serum", "eye-serum"),
-            "soaps": ("soaps", "deodorant"),
-            "oils": ("infused-in-coconut-oil", "mist", "insect-repellent"),
-        }[category_key]
-        source_ingredients = source.get("ingredients", "")
-        if not source_ingredients and category_key == "butters":
-            source_ingredients = source_categories.get("body-butters", {}).get(
-                "ingredients", ""
+        category_handles = source.get("category_handles", [])
+        category_keys = list(
+            dict.fromkeys(
+                CATEGORY_GROUPS[handle]
+                for handle in category_handles
+                if handle in CATEGORY_GROUPS
             )
-        if not source_ingredients and handle == "bare-facial-serum":
-            source_ingredients = source_categories.get("facial-serum", {}).get(
-                "ingredients", ""
-            )
-        if not source_ingredients and handle == "bare-under-eye-serum":
-            source_ingredients = source_categories.get("eye-serum", {}).get(
-                "ingredients", ""
-            )
-        ingredients = INGREDIENT_OVERRIDES.get(handle, source_ingredients)
+        )
+        if not category_keys:
+            searchable = " ".join(
+                (
+                    source["handle"],
+                    source.get("name", ""),
+                    " ".join(source.get("categories", [])),
+                    " ".join(source.get("tags", [])),
+                )
+            ).casefold()
+            if "butter" in searchable:
+                category_keys = ["butters"]
+            elif "serum" in searchable or "under eye" in searchable:
+                category_keys = ["serums"]
+            elif "soap" in searchable or "sandalwood ginger turmeric" in searchable:
+                category_keys = ["soaps"]
+            elif any(
+                keyword in searchable
+                for keyword in (
+                    "beard",
+                    "coconut oil",
+                    "hair",
+                    "mist",
+                    "repellent",
+                    "tonic",
+                )
+            ):
+                category_keys = ["oils"]
+            else:
+                category_keys = ["other"]
+
+        price = Decimal(str(source["price"]))
+        price_cents = int(price * 100)
+        ingredients = source.get("ingredients", "")
+        if not ingredients:
+            for handle in category_handles:
+                ingredients = source_categories.get(handle, {}).get("ingredients", "")
+                if ingredients:
+                    break
 
         catalog_products.append(
             {
                 **source,
-                "sku": handle,
-                "handle": handle,
-                "name": name,
+                "sku": source["handle"],
                 "price_cents": price_cents,
-                "price": price_cents / 100,
-                "price_label": f"${price_cents / 100:.2f} USD",
-                "ingredients": ingredients,
-                "category_key": category_key,
-                "category_label": next(
-                    name for name, key in CATEGORY_SPEC if key == category_key
+                "category_keys": category_keys,
+                "category_key": category_keys[0],
+                "category_label": " · ".join(
+                    category_names[key] for key in category_keys
                 ),
-                "category_handles": list(source_category_handles),
-                "available": bool(source.get("available", True)),
+                "ingredients": ingredients,
+                "available": True,
             }
         )
+
+    catalog_products.sort(
+        key=lambda product: (
+            next(
+                index
+                for index, (_, key) in enumerate(CATEGORY_SPEC)
+                if key == product["category_key"]
+            ),
+            product["name"].casefold(),
+        )
+    )
 
     categories = [
         {
             "key": key,
             "name": name,
-            "count": sum(
-                product["category_key"] == key for product in catalog_products
-            ),
+            "count": sum(key in product["category_keys"] for product in catalog_products),
         }
         for name, key in CATEGORY_SPEC
+        if any(key in product["category_keys"] for product in catalog_products)
     ]
     return {
         "source_url": source_catalog.get("source_url", "https://bareartisanproducts.com"),
@@ -184,10 +200,12 @@ def _provider_configuration() -> dict[str, Any]:
 def _parse_cart(payload: Any, catalog: dict[str, Any]) -> list[dict[str, Any]]:
     if not isinstance(payload, dict) or not isinstance(payload.get("items"), list):
         raise InvalidCart("Provide cart items as a JSON array.")
-    if not payload["items"] or len(payload["items"]) > len(PRODUCT_SPEC):
-        raise InvalidCart("The cart must contain between 1 and 9 distinct products.")
-
     product_by_sku = {product["sku"]: product for product in catalog["products"]}
+    max_items = min(len(product_by_sku), 250)
+    if not payload["items"] or len(payload["items"]) > max_items:
+        raise InvalidCart(
+            f"The cart must contain between 1 and {max_items} distinct available products."
+        )
     normalized_items = []
     seen_skus = set()
     for item in payload["items"]:
@@ -282,20 +300,43 @@ def _paypal_request(method: str, path: str, body: dict[str, Any] | None = None) 
     return result
 
 
-@app.get("/")
-def home():
+def _page_context() -> dict[str, Any]:
     catalog = _load_catalog()
     featured_product = next(
-        product
-        for product in catalog["products"]
-        if product["sku"] == "bare-dream-cream"
+        (
+            product
+            for product in catalog["products"]
+            if product["sku"] == "bare-dream-cream"
+        ),
+        catalog["products"][0],
     )
-    return render_template(
-        "index.html",
-        catalog=catalog,
-        featured_product=featured_product,
-        payments=_provider_configuration(),
-    )
+    return {
+        "catalog": catalog,
+        "featured_product": featured_product,
+        "featured_products": catalog["products"][:3],
+        "payments": _provider_configuration(),
+        "phone_number": PHONE_NUMBER,
+    }
+
+
+@app.get("/")
+def home():
+    return render_template("index.html", **_page_context())
+
+
+@app.get("/collection")
+def collection():
+    return render_template("collection.html", **_page_context())
+
+
+@app.get("/philosophy")
+def philosophy():
+    return render_template("philosophy.html", **_page_context())
+
+
+@app.get("/concierge")
+def concierge():
+    return render_template("concierge.html", **_page_context())
 
 
 @app.get("/health")

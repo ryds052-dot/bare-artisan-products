@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block meta_description %}Small-batch botanical skincare and everyday rituals, made with care in Jamaica by Bare Artisan Products.{% endblock %}">
+    <meta name="theme-color" content="#0b0a09">
+    <title>{% block title %}Bare Artisan Products — Botanical Care, Rooted in Jamaica{% endblock %}</title>
+    <meta property="og:title" content="{% block og_title %}Bare Artisan Products — Botanical Care, Rooted in Jamaica{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Small-batch botanical skincare and everyday rituals, made with care in Jamaica.{% endblock %}">
+    <meta property="og:site_name" content="Bare Artisan Products">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bareartisanproducts.com{{ request.path }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bare Artisan Products — Botanical Care, Rooted in Jamaica">
+    <meta name="twitter:description" content="Small-batch botanical skincare and everyday rituals, made with care in Jamaica.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% if payments.paypal_enabled %}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ payments.paypal_client_id|urlencode }}&currency=USD&intent=capture&components=buttons" defer></script>
+    {% endif %}
+    {% if payments.stripe_enabled %}
+    <script src="https://js.stripe.com/v3/" defer></script>
+    {% endif %}
+    {% block head %}{% endblock %}
+</head>
+<body
+    data-products="{{ catalog.products|tojson|forceescape }}"
+    data-paypal-enabled="{{ payments.paypal_enabled|tojson }}"
+    data-stripe-enabled="{{ payments.stripe_enabled|tojson }}"
+    data-stripe-publishable-key="{{ payments.stripe_publishable_key|forceescape }}"
+>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="announcement">Handcrafted in Jamaica <span aria-hidden="true">·</span> Complimentary shipping on orders over $30 USD</div>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="{{ url_for('home') }}" aria-label="Bare Artisan Products home">
+                {% if catalog.brand.logo_url %}
+                <img src="{{ catalog.brand.logo_url }}" alt="Bare Artisan Products">
+                {% else %}
+                <span class="brand-wordmark">BARE ARTISAN</span>
+                {% endif %}
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="{{ url_for('home') }}" {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>Home</a>
+                <a href="{{ url_for('collection') }}" {% if request.endpoint == 'collection' %}aria-current="page"{% endif %}>Collection</a>
+                <a href="{{ url_for('philosophy') }}" {% if request.endpoint == 'philosophy' %}aria-current="page"{% endif %}>Philosophy</a>
+                <a href="{{ url_for('concierge') }}" {% if request.endpoint == 'concierge' %}aria-current="page"{% endif %}>Concierge</a>
+            </nav>
+            <div class="header-actions">
+                <button id="menu-toggle" class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+                </button>
+                <button id="bag-open" class="bag-button" type="button" aria-haspopup="dialog" aria-controls="cart-drawer">
+                    Apothecary bag <span id="cart-count" class="bag-count" aria-live="polite">0</span>
+                </button>
+            </div>
+            <nav id="mobile-navigation" class="mobile-nav" aria-label="Mobile navigation">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('collection') }}">Collection</a>
+                <a href="{{ url_for('philosophy') }}">Philosophy</a>
+                <a href="{{ url_for('concierge') }}">Concierge</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    {% if catalog.brand.logo_url %}<img class="footer-logo" src="{{ catalog.brand.logo_url }}" alt="Bare Artisan Products">{% else %}<h3>Bare Artisan Products</h3>{% endif %}
+                    <p>Small-batch botanical care, made with care in Jamaica.</p>
+                </div>
+                <div>
+                    <h3>Jamaican concierge</h3>
+                    <p><a href="https://wa.me/{{ phone_number }}" target="_blank" rel="noopener noreferrer">(876) 287-4304</a><br><a href="mailto:baresoap876@gmail.com">baresoap876@gmail.com</a></p>
+                </div>
+                <div>
+                    <h3>Explore</h3>
+                    <p><a href="{{ url_for('collection') }}">Shop all formulations</a><br><a href="{{ url_for('philosophy') }}">Our philosophy</a><br><a href="{{ url_for('concierge') }}">Wholesale & contact</a></p>
+                </div>
+            </div>
+            <div class="copyright">© 2026 Bare Artisan Products. Product descriptions and imagery are provided by the official store.</div>
+        </div>
+    </footer>
+
+    <noscript><p class="noscript">JavaScript is needed for the shopping bag, category filters and checkout buttons.</p></noscript>
+
+    <div id="cart-drawer" class="drawer-layer" hidden>
+        <button id="drawer-backdrop" class="drawer-backdrop" type="button" aria-label="Close apothecary bag"></button>
+        <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1">
+            <header class="drawer-header">
+                <div><span class="eyebrow">Small-batch order</span><h2 id="cart-title">Your apothecary bag</h2></div>
+                <button id="bag-close" class="drawer-close" type="button" aria-label="Close bag">×</button>
+            </header>
+            <div class="drawer-content">
+                <div class="shipping-meter">
+                    <p id="shipping-copy" class="shipping-copy" aria-live="polite">Add $30.00 USD for complimentary shipping.</p>
+                    <div class="meter-track" role="progressbar" aria-label="Free shipping progress" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0"><div id="shipping-fill" class="meter-fill"></div></div>
+                </div>
+                <div id="cart-items" aria-live="polite"><p class="cart-empty">Your bag is waiting for a ritual.</p></div>
+                <section class="checkout-section" aria-labelledby="paypal-title">
+                    <h3 id="paypal-title">PayPal</h3>
+                    {% if payments.paypal_enabled %}
+                    <div id="paypal-buttons" class="payment-mount"></div>
+                    {% else %}
+                    <p class="payment-fallback">PayPal checkout is ready to connect. Configure <code>PAYPAL_CLIENT_ID</code>, <code>PAYPAL_CLIENT_SECRET</code>, and <code>PAYPAL_ENVIRONMENT</code> in your deployment environment.</p>
+                    {% endif %}
+                </section>
+                <section class="checkout-section" aria-labelledby="stripe-title">
+                    <h3 id="stripe-title">Express checkout</h3>
+                    {% if payments.stripe_enabled %}
+                    <form id="stripe-payment-form">
+                        <button id="stripe-start" class="button button-secondary" type="button">Load secure payment options</button>
+                        <div id="stripe-payment-options" hidden>
+                            <div id="stripe-express-checkout"></div>
+                            <div id="stripe-payment-element"></div>
+                            <button class="button button-primary" type="submit">Pay securely</button>
+                        </div>
+                    </form>
+                    <p class="checkout-note">Apple Pay and Google Pay appear when supported by your browser, device and Stripe account.</p>
+                    {% else %}
+                    <p class="payment-fallback">Stripe, Apple Pay and Google Pay appear here when configured. Set <code>STRIPE_SECRET_KEY</code> and <code>STRIPE_PUBLISHABLE_KEY</code>; verify your domain in Stripe to enable wallets.</p>
+                    {% endif %}
+                    <p id="checkout-status" class="checkout-status" role="status" aria-live="polite"></p>
+                </section>
+            </div>
+            <footer class="drawer-footer">
+                <div class="subtotal"><span>Subtotal <small>USD</small></span><strong id="cart-total">$0.00</strong></div>
+                <p id="shipping-qualification" class="checkout-note">Shipping is confirmed with the concierge.</p>
+                <button id="whatsapp-checkout" class="button whatsapp-button" type="button">Continue with WhatsApp concierge ↗</button>
+            </footer>
+        </aside>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</body>
+</html>

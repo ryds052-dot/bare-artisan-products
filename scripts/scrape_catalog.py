@@ -170,6 +170,11 @@ def _product_record(product: dict[str, Any]) -> dict[str, Any] | None:
     images = product.get("images") or []
     image = images[0] if images and isinstance(images[0], dict) else {}
     image_url = str(image.get("src") or product.get("featured_image") or "")
+    tags = product.get("tags") or []
+    if isinstance(tags, str):
+        tags = [tag.strip() for tag in tags.split(",") if tag.strip()]
+    elif not isinstance(tags, list):
+        tags = []
 
     return {
         "id": str(product.get("id") or handle),
@@ -185,6 +190,7 @@ def _product_record(product: dict[str, Any]) -> dict[str, Any] | None:
         "image_url": urljoin(BASE_URL, image_url) if image_url else "",
         "image_alt": str(image.get("alt") or title),
         "product_url": f"{BASE_URL}/products/{handle}",
+        "tags": tags,
         "category_handles": [],
         "categories": [],
     }
@@ -204,8 +210,20 @@ def scrape_catalog() -> dict[str, Any]:
         if isinstance(collection, dict) and collection.get("handle")
     }
 
-    categories: list[dict[str, Any]] = []
+    all_products_payload = _shopify_json("/collections/all/products.json?limit=250")
+    all_products = all_products_payload.get("products")
+    if not isinstance(all_products, list):
+        raise ValueError("Shopify all-products response did not contain a products list.")
+
     products_by_id: dict[str, dict[str, Any]] = {}
+    for raw_product in all_products:
+        if not isinstance(raw_product, dict):
+            continue
+        product = _product_record(raw_product)
+        if product is not None and product["available"]:
+            products_by_id[product["id"]] = product
+
+    categories: list[dict[str, Any]] = []
     for display_name, handle in CATEGORY_SPECS:
         collection = collection_by_handle.get(handle, {})
         category = {
@@ -238,9 +256,9 @@ def scrape_catalog() -> dict[str, Any]:
             if product is None:
                 continue
             product_id = product["id"]
-            if product_id not in products_by_id:
-                products_by_id[product_id] = product
-            saved_product = products_by_id[product_id]
+            saved_product = products_by_id.get(product_id)
+            if saved_product is None:
+                continue
             if handle not in saved_product["category_handles"]:
                 saved_product["category_handles"].append(handle)
                 saved_product["categories"].append(display_name)

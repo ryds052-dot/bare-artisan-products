@@ -1,6 +1,6 @@
 {
   "source_url": "https://bareartisanproducts.com",
-  "scraped_at": "2026-10-23T20:59:37Z",
+  "scraped_at": "2026-10-23T21:52:42Z",
   "brand": {
     "name": "Bare Artisan Products",
     "logo_url": "https://bareartisanproducts.com/cdn/shop/files/Bare_logo_natural_Artisan_copy.jpg?v=1742580574&width=600",
@@ -109,6 +109,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BaredreamCream.webp?v=1742575100",
       "image_alt": "Bare Dream Cream",
       "product_url": "https://bareartisanproducts.com/products/bare-dream-cream",
+      "tags": [],
       "category_handles": [
         "body-butters"
       ],
@@ -128,6 +129,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareRosemarybodybutter.webp?v=1742575389",
       "image_alt": "Bare Rosemary Body Butter",
       "product_url": "https://bareartisanproducts.com/products/bare-rosemary-body-butter",
+      "tags": [],
       "category_handles": [
         "body-butters"
       ],
@@ -147,6 +149,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareBeardOil.webp?v=1742506067",
       "image_alt": "BARE Beard Oil",
       "product_url": "https://bareartisanproducts.com/products/bare-beard-oil",
+      "tags": [],
       "category_handles": [
         "beard-oils",
         "hair-products"
@@ -168,6 +171,11 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/6soaps.webp?v=1742572477",
       "image_alt": "6 Soaps",
       "product_url": "https://bareartisanproducts.com/products/6-soaps",
+      "tags": [
+        "Bar soap",
+        "Natural soaps",
+        "Soap"
+      ],
       "category_handles": [
         "soaps"
       ],
@@ -187,6 +195,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareamberRoseSoap.webp?v=1742574383",
       "image_alt": "Bare Amber Rose Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-amber-rose-soap",
+      "tags": [],
       "category_handles": [
         "soaps"
       ],
@@ -206,6 +215,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareCitrusBlastSoap.webp?v=1742575777",
       "image_alt": "Bare Citrus Blast Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-citrus-blast-soap",
+      "tags": [],
       "category_handles": [
         "soaps"
       ],
@@ -225,6 +235,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareCoffeeCinnamonSoap.webp?v=1742575805",
       "image_alt": "Bare Coffee Cinnamon Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-coffee-cinnamon-soap",
+      "tags": [],
       "category_handles": [
         "soaps"
       ],
@@ -244,6 +255,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareGreenteaCeraceesoap.webp?v=1742575691",
       "image_alt": "Bare Green Tea Cerasee Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-green-tea-cerasee-soap",
+      "tags": [],
       "category_handles": [
         "soaps"
       ],
@@ -263,6 +275,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareHempCedarSoap.webp?v=1742575643",
       "image_alt": "Bare Hemp Cedar Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-hemp-cedar-soap",
+      "tags": [],
       "category_handles": [
         "soaps"
       ],
@@ -282,6 +295,11 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareLavenderLemonBalmpaprika.webp?v=1742572950",
       "image_alt": "Bare Lavender Lemon Balm Paprika Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-lavender-lemon-balm-paprika-soap",
+      "tags": [
+        "Bar soap",
+        "Natural soaps",
+        "Soap"
+      ],
       "category_handles": [
         "soaps"
       ],
@@ -301,6 +319,12 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareLemongressMoringaSoap.webp?v=1742572870",
       "image_alt": "Bare Lemongrass Moringa Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-lemongrass-moringa-soap",
+      "tags": [
+        "Bar soap",
+        "Natural soaps",
+        "Soap",
+        "soaps"
+      ],
       "category_handles": [
         "soaps"
       ],
@@ -320,6 +344,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareMintSoap.webp?v=1742573176",
       "image_alt": "Bare Neem Mint Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-neem-mint-soap",
+      "tags": [],
       "category_handles": [
         "soaps"
       ],
@@ -339,6 +364,11 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareRosemaryTumerSoap.webp?v=1742572759",
       "image_alt": "Bare Rosemary Turmeric Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-rosemary-turmeric-soap",
+      "tags": [
+        "Bar Soaps",
+        "Soaps",
+        "Tumeric Soaps"
+      ],
       "category_handles": [
         "soaps"
       ],
@@ -358,6 +388,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/Barevanillanutmegsoap.webp?v=1742575595",
       "image_alt": "Bare Vanilla Nutmeg Soap",
       "product_url": "https://bareartisanproducts.com/products/bare-vanilla-nutmeg-soap",
+      "tags": [],
       "category_handles": [
         "soaps"
       ],
@@ -377,6 +408,10 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/Boxof4soaps.webp?v=1742572598",
       "image_alt": "Box of 4 Soaps",
       "product_url": "https://bareartisanproducts.com/products/box-of-4-soaps",
+      "tags": [
+        "natural soaps",
+        "soaps"
+      ],
       "category_handles": [
         "soaps"
       ],
@@ -396,6 +431,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareFacialSerum.webp?v=1742574931",
       "image_alt": "Bare Facial Serum",
       "product_url": "https://bareartisanproducts.com/products/bare-facial-serum",
+      "tags": [],
       "category_handles": [
         "facial-serum"
       ],
@@ -415,6 +451,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareAloeMist.webp?v=1742569380",
       "image_alt": "Bare Aloe Mist",
       "product_url": "https://bareartisanproducts.com/products/bare-aloe-mist",
+      "tags": [],
       "category_handles": [
         "skin-tonic",
         "mist"
@@ -436,6 +473,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/RosemaryTarragonskin.webp?v=1742572672",
       "image_alt": "Bare Rosemary Tarragon Skin Tonic",
       "product_url": "https://bareartisanproducts.com/products/bare-rosemary-tarragon-skin-tonic",
+      "tags": [],
       "category_handles": [
         "skin-tonic"
       ],
@@ -455,6 +493,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareTeaTreeSkinTonic.webp?v=1742575149",
       "image_alt": "Bare Tea Tree Skin Tonic",
       "product_url": "https://bareartisanproducts.com/products/bare-tea-tree-skin-tonic",
+      "tags": [],
       "category_handles": [
         "skin-tonic"
       ],
@@ -474,6 +513,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/IMG_6723.jpg?v=1777308396",
       "image_alt": "Bare Hair Growth Serum",
       "product_url": "https://bareartisanproducts.com/products/bare-hair-growth-serum",
+      "tags": [],
       "category_handles": [
         "hair-products"
       ],
@@ -493,6 +533,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareHairTonic.webp?v=1742505918",
       "image_alt": "BARE Hair Tonic",
       "product_url": "https://bareartisanproducts.com/products/bare-hair-tonic",
+      "tags": [],
       "category_handles": [
         "hair-products"
       ],
@@ -512,6 +553,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareMoringaInfusedinCoconutOil.webp?v=1742569084",
       "image_alt": "Bare Moringa infused in Coconut oil",
       "product_url": "https://bareartisanproducts.com/products/bare-moringa-infused-in-coconut-oil",
+      "tags": [],
       "category_handles": [
         "hair-products",
         "infused-in-coconut-oil"
@@ -533,6 +575,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareRosemaryinfusedincocnoutoil.webp?v=1742575260",
       "image_alt": "Bare Rosemary infused in coconut oil",
       "product_url": "https://bareartisanproducts.com/products/bare-rosemary-infused-in-coconut-oil",
+      "tags": [],
       "category_handles": [
         "hair-products",
         "infused-in-coconut-oil"
@@ -554,6 +597,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareInsectRepellent.webp?v=1742575433",
       "image_alt": "Bare Insect Repellent",
       "product_url": "https://bareartisanproducts.com/products/bare-insect-repellent",
+      "tags": [],
       "category_handles": [
         "insect-repellent"
       ],
@@ -573,6 +617,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareNeemInfusedinCoconutoil.webp?v=1742575204",
       "image_alt": "Bare Neem infused in coconut oil",
       "product_url": "https://bareartisanproducts.com/products/bare-neem-infused-in-coconut-oil",
+      "tags": [],
       "category_handles": [
         "infused-in-coconut-oil"
       ],
@@ -592,6 +637,7 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareNaturalDeodorant.webp?v=1742575355",
       "image_alt": "Bare Natural Deodorant",
       "product_url": "https://bareartisanproducts.com/products/bare-natural-deodorant",
+      "tags": [],
       "category_handles": [
         "deodorant"
       ],
@@ -611,12 +657,61 @@
       "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/Bareundereyeserum.webp?v=1742575070",
       "image_alt": "Bare Under Eye Serum",
       "product_url": "https://bareartisanproducts.com/products/bare-under-eye-serum",
+      "tags": [],
       "category_handles": [
         "eye-serum"
       ],
       "categories": [
         "Under Eye Serum"
       ]
+    },
+    {
+      "id": "10101593342236",
+      "handle": "bare-hand-sanitizer",
+      "name": "Bare Hand Sanitizer",
+      "description": "The perfect blend of 65% alcohol, infused Aloe Vera gel, Glycerin, Vitamin E, and essential oils to cleanse and nourish skin on the go. Moisturize while you sanitize",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareHandSanitizer.webp?v=1742569489",
+      "image_alt": "Bare Hand Sanitizer",
+      "product_url": "https://bareartisanproducts.com/products/bare-hand-sanitizer",
+      "tags": [],
+      "category_handles": [],
+      "categories": []
+    },
+    {
+      "id": "10101593276700",
+      "handle": "bare-lip-balm",
+      "name": "Bare Lip Balm",
+      "description": "Bare Lip Balm is the perfect meld of Beeswax, Shea Butter, Avocado oil, Jojoba oil, Castor oil, CBD oil and organic Coconut oil with Peppermint & Lavender Essential oils. This lip balm will leave your lips soft, nourished and healthy all year round. Also contains Vitamin E to heal dry or cracked lips and add antioxidant for protection. Moisturize and protect your lips with this long lasting, soft balm.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/BareLipBalm.webp?v=1742569281",
+      "image_alt": "Bare Lip Balm",
+      "product_url": "https://bareartisanproducts.com/products/bare-lip-balm",
+      "tags": [],
+      "category_handles": [],
+      "categories": []
+    },
+    {
+      "id": "10101593375004",
+      "handle": "bare-sandalwood-ginger-turmeric",
+      "name": "Bare Sandalwood Ginger Turmeric",
+      "description": "BARE SANDALWOOD GINGER TURMERIC combines the astringent, antiseptic, anti-inflammatory, antiviral, antifungal and antioxidant properties of SANDALWOOD, GINGER, and TURMERIC to prevent dry skin and inhibit growth of new bacteria. Wrinkles are diminished as skin’s elasticity improved. Discover the real beauty of your skin with BARE SANDALWOOD GINGER TURMERIC.",
+      "ingredients": "",
+      "price": 15.0,
+      "price_label": "$15.00 USD",
+      "available": true,
+      "image_url": "https://cdn.shopify.com/s/files/1/0920/6992/1052/files/Baresandalwoodgingertumeric.webp?v=1742569532",
+      "image_alt": "Bare Sandalwood Ginger Turmeric",
+      "product_url": "https://bareartisanproducts.com/products/bare-sandalwood-ginger-turmeric",
+      "tags": [],
+      "category_handles": [],
+      "categories": []
     }
   ]
 }

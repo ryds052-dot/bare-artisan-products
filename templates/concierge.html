@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Concierge & Wholesale | Bare Artisan Products — Botanical Care, Rooted in Jamaica{% endblock %}
+{% block meta_description %}Contact the Bare Artisan Products Jamaican concierge for product questions, order assistance and wholesale inquiries.{% endblock %}
+{% block content %}
+<section class="hero page-hero">
+    <div class="wrap">
+        <span class="eyebrow">A personal connection</span>
+        <h1>Here to help<br><em>you find your ritual.</em></h1>
+        <p class="hero-copy">Reach our Jamaican concierge for product guidance, order questions, or wholesale and retail partnership inquiries.</p>
+        <div class="hero-actions">
+            <a class="button button-primary" href="https://wa.me/{{ phone_number }}?text=Hello%20Bare%20Artisan%20Products%2C%20I%20would%20like%20to%20speak%20with%20the%20concierge." target="_blank" rel="noopener noreferrer">WhatsApp (876) 287-4304 ↗</a>
+            <a class="button button-secondary" href="mailto:baresoap876@gmail.com?subject=Wholesale%20inquiry">Email the concierge</a>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="wrap">
+        <div class="section-heading">
+            <div><span class="eyebrow">Concierge services</span><h2>Thoughtful help,<br>direct from Jamaica.</h2></div>
+            <p class="section-intro">Tell us what you are looking for. We’ll help you find the right product information or guide you through a wholesale conversation.</p>
+        </div>
+        <div class="product-grid philosophy-grid">
+            <article class="faq-card">
+                <span class="product-category">Product & order support</span>
+                <h2 class="product-title">A question about your order?</h2>
+                <p class="story-copy">Message us on WhatsApp for order assistance, product details, or help choosing among the current formulations.</p>
+                <a class="button button-secondary" href="https://wa.me/{{ phone_number }}" target="_blank" rel="noopener noreferrer">Start a WhatsApp conversation ↗</a>
+            </article>
+            <article class="faq-card">
+                <span class="product-category">Wholesale & retail</span>
+                <h2 class="product-title">Let’s work together.</h2>
+                <p class="story-copy">For wholesale pricing, retail partnerships, and larger orders, send a note with your business name, location, and the products you are interested in.</p>
+                <a class="button button-primary" href="https://wa.me/{{ phone_number }}?text=Hello%20Bare%20Artisan%20Products%2C%20I%20am%20interested%20in%20a%20wholesale%20inquiry." target="_blank" rel="noopener noreferrer">Ask about wholesale ↗</a>
+            </article>
+            <article class="faq-card">
+                <span class="product-category">Email</span>
+                <h2 class="product-title">Prefer email?</h2>
+                <p class="story-copy">Write to our team and we’ll direct your request to the right person.</p>
+                <a href="mailto:baresoap876@gmail.com">baresoap876@gmail.com</a>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}

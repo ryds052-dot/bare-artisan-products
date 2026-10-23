@@ -177,8 +177,9 @@
                 filter.setAttribute("aria-pressed", String(filter === button));
             });
             document.querySelectorAll(".product-card").forEach(card => {
+                const categories = (card.dataset.categories || "").split(",");
                 card.hidden = button.dataset.filter !== "all"
-                    && card.dataset.category !== button.dataset.filter;
+                    && !categories.includes(button.dataset.filter);
             });
         });
     });
