@@ -1,558 +1,903 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover small-batch botanical skincare, body butters, oils and soaps handcrafted in Jamaica by Bare Artisan Products.">
-    <meta name="theme-color" content="#f6f3eb">
-    <title>Bare Artisan Products | Jamaican Botanical Skincare</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Small-batch botanical skincare and everyday rituals, made with care in Jamaica by Bare Artisan Products.">
+    <meta name="theme-color" content="#0b0a09">
+    <title>Bare Artisan Products — Botanical Care, Rooted in Jamaica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            color-scheme: dark;
+            --obsidian: #0b0a09;
+            --panel: rgba(25, 23, 20, .78);
+            --panel-solid: #171511;
+            --cream: #f2eee4;
+            --muted: #b6ad9e;
+            --gold: #d6ac68;
+            --gold-bright: #edca8a;
+            --emerald: #77957b;
+            --line: rgba(226, 210, 179, .15);
+            --serif: "Cormorant Garamond", Georgia, serif;
+            --sans: "Plus Jakarta Sans", Arial, sans-serif;
+            font-family: var(--sans);
+            background: var(--obsidian);
+            color: var(--cream);
+            scroll-behavior: smooth;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #f6f3eb;
-            color: #26362d;
-            overflow-x: hidden;
+            margin: 0;
+            min-width: 320px;
+            background:
+                radial-gradient(ellipse at 8% 13%, rgba(133, 96, 47, .15), transparent 34rem),
+                radial-gradient(ellipse at 95% 42%, rgba(39, 82, 58, .14), transparent 38rem),
+                var(--obsidian);
+            color: var(--cream);
         }
-        .site-footer {
-            background: #344a38;
-            color: #e8e2d5;
-            border-color: rgba(255, 255, 255, 0.14);
+        body.drawer-open { overflow: hidden; }
+        a { color: inherit; }
+        button { color: inherit; font: inherit; }
+        button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible {
+            outline: 2px solid var(--gold-bright);
+            outline-offset: 4px;
         }
-        .bg-stone-950.site-footer { background: #344a38 !important; }
-        .site-footer .text-white { color: #fffdf7 !important; }
-        .site-footer .text-stone-400 { color: #d7d2c6 !important; }
-        h1, h2, h3, h4, .font-serif {
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 0.02em;
+        img { display: block; max-width: 100%; }
+        .skip-link {
+            position: fixed;
+            z-index: 100;
+            top: 1rem;
+            left: 1rem;
+            padding: .75rem 1rem;
+            transform: translateY(-160%);
+            background: var(--cream);
+            color: var(--obsidian);
         }
-        .text-white { color: #26362d !important; }
-        .text-stone-200, .text-stone-300 { color: #4d5c50 !important; }
-        .text-stone-400, .text-stone-500 { color: #737b6e !important; }
-        .text-amber-200, .text-amber-300 { color: #7a5526 !important; }
-        .text-amber-400 { color: #8a622b !important; }
-        .text-emerald-400 { color: #486449 !important; }
-        .bg-stone-950 { background-color: #f6f3eb !important; }
-        .bg-stone-900 { background-color: #ede9de !important; }
-        .bg-stone-800 { background-color: #dfdbcf !important; }
-        [class~="bg-stone-900/50"] { background-color: rgba(237, 233, 222, 0.58) !important; }
-        .bg-amber-600 { background-color: #526b50 !important; }
-        .cat-btn.bg-amber-600, .bg-amber-600.text-white { color: #fffdf7 !important; }
-        .border-stone-900 { border-color: #e6e0d3 !important; }
-        .border-stone-800, .border-stone-800\/80 { border-color: #e2ddcf !important; }
-        .border-stone-700 { border-color: #d9d3c5 !important; }
-        [class~="bg-stone-950/85"], [class~="bg-stone-950/90"] {
-            background-color: rgba(246, 243, 235, 0.94) !important;
-        }
-        [class~="bg-stone-950/80"] { background-color: rgba(246, 243, 235, 0.96) !important; }
-        [class~="bg-stone-950/50"] { background-color: rgba(246, 243, 235, 0.86) !important; }
-        [class~="bg-stone-900/90"] { background-color: rgba(237, 233, 222, 0.94) !important; }
-        [class~="bg-amber-500/20"] { background-color: rgba(138, 98, 43, 0.12) !important; }
-        .announcement-bar {
-            background: #344a38;
-            color: #f3eddf;
-            border-color: rgba(255, 255, 255, 0.12);
+        .skip-link:focus { transform: translateY(0); }
+        .announcement {
+            padding: .65rem 1rem;
+            background: #172019;
+            border-bottom: 1px solid var(--line);
+            color: #d9c8a7;
+            text-align: center;
+            font-size: .65rem;
+            font-weight: 600;
+            letter-spacing: .17em;
+            text-transform: uppercase;
         }
         .site-header {
-            background: rgba(246, 243, 235, 0.94);
-            border-color: #e5dfd2;
-            box-shadow: 0 8px 28px rgba(38, 54, 45, 0.04);
+            position: sticky;
+            z-index: 20;
+            top: 0;
+            border-bottom: 1px solid var(--line);
+            background: rgba(11, 10, 9, .87);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
-        .hero-section {
-            background:
-                radial-gradient(ellipse at 85% 15%, rgba(199, 177, 128, 0.24), transparent 38%),
-                linear-gradient(135deg, #f6f3eb 0%, #eee9dd 100%);
+        .header-inner, .wrap { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+        .header-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
         }
-        #collection, #alchemy, #faq, #concierge { scroll-margin-top: 6rem; }
-        #alchemy .absolute.bottom-6 { color: #fff !important; }
-        .glass-card {
-            background: #fffdf7;
-            border: 1px solid #e8e2d5;
-            box-shadow: 0 16px 44px rgba(38, 54, 45, 0.07);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        .brand { display: flex; align-items: center; min-width: 0; text-decoration: none; }
+        .brand img { width: 184px; max-height: 58px; object-fit: contain; object-position: left center; }
+        .brand-wordmark { font: 600 1.6rem var(--serif); letter-spacing: .12em; }
+        .desktop-nav { display: flex; align-items: center; gap: 1.7rem; }
+        .desktop-nav a, .eyebrow, .button-label {
+            font-size: .66rem;
+            font-weight: 600;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            text-decoration: none;
         }
-        .glass-card:hover {
-            transform: translateY(-4px);
-            border-color: #cfc4a8;
-            box-shadow: 0 22px 52px rgba(38, 54, 45, 0.12);
+        .desktop-nav a { color: #c7bdac; transition: color .2s ease; }
+        .desktop-nav a:hover { color: var(--gold-bright); }
+        .header-actions { display: flex; align-items: center; gap: .65rem; }
+        .icon-button, .bag-button, .menu-button, .filter-button, .button {
+            border: 1px solid var(--line);
+            background: transparent;
+            cursor: pointer;
+            transition: border-color .2s ease, background .2s ease, transform .2s ease;
         }
-        .product-summary {
+        .bag-button {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            min-height: 42px;
+            padding: 0 1rem;
+            border-radius: 99px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        .bag-button:hover, .icon-button:hover, .menu-button:hover, .filter-button:hover {
+            border-color: rgba(214, 172, 104, .62);
+            background: rgba(214, 172, 104, .08);
+        }
+        .bag-count {
+            min-width: 23px;
+            padding: .2rem .35rem;
+            border-radius: 99px;
+            background: #526d55;
+            color: #fff;
+            text-align: center;
+            font-size: .65rem;
+            letter-spacing: 0;
+        }
+        .menu-button { display: none; width: 42px; height: 42px; border-radius: 50%; }
+        .mobile-nav { display: none; }
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(5rem, 11vw, 9.5rem) 0 clamp(4.5rem, 8vw, 7rem);
+            border-bottom: 1px solid var(--line);
+        }
+        .hero::after {
+            position: absolute;
+            right: -10rem;
+            bottom: -18rem;
+            width: 45rem;
+            height: 45rem;
+            border: 1px solid rgba(214, 172, 104, .1);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+        .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(2.5rem, 7vw, 6rem); }
+        .eyebrow { display: inline-flex; align-items: center; gap: .7rem; color: var(--gold); }
+        .eyebrow::before { width: 24px; height: 1px; background: currentColor; content: ""; }
+        h1, h2, h3, h4, .serif { font-family: var(--serif); font-weight: 500; }
+        h1 { max-width: 760px; margin: 1.5rem 0 1rem; font-size: clamp(3.5rem, 7.6vw, 7.2rem); line-height: .89; letter-spacing: -.035em; }
+        h1 em { color: var(--gold-bright); font-weight: 400; }
+        .hero-copy { max-width: 550px; color: #c4bcaf; font-size: .96rem; line-height: 1.9; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: .55rem;
+            padding: .8rem 1.2rem;
+            border-radius: 4px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        .button-primary { border-color: #c39b59; background: linear-gradient(135deg, #c49a57, #94703d); color: #17130e; }
+        .button-primary:hover { transform: translateY(-2px); background: linear-gradient(135deg, #edca8a, #b58a4a); }
+        .button-secondary { color: var(--cream); }
+        .hero-note { margin-top: 2rem; color: #a8a092; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
+        .feature-card, .product-card, .faq-card {
+            border: 1px solid rgba(226, 210, 179, .16);
+            background: linear-gradient(145deg, rgba(40, 36, 29, .76), rgba(15, 14, 12, .88));
+            box-shadow: 0 22px 70px rgba(0, 0, 0, .35), inset 0 1px rgba(255, 255, 255, .05);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+        .feature-card { padding: 1.15rem; }
+        .feature-image { position: relative; overflow: hidden; aspect-ratio: 4 / 4.25; background: #201c16; }
+        .feature-image img, .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+        .feature-card:hover .feature-image img, .product-card:hover .product-image img { transform: scale(1.035); }
+        .feature-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: .45rem .7rem;
+            border: 1px solid rgba(237, 202, 138, .42);
+            background: rgba(11, 10, 9, .72);
+            color: var(--gold-bright);
+            font-size: .58rem;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+        .feature-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem .3rem .25rem; }
+        .feature-meta p { margin: .25rem 0; color: var(--muted); font-size: .7rem; }
+        .feature-name { margin: 0; font-size: 1.7rem; }
+        .feature-price { color: var(--gold-bright); white-space: nowrap; font: 600 1.2rem var(--serif); }
+        .section { padding: clamp(4.5rem, 8vw, 7.5rem) 0; }
+        .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+        .section-heading h2 { margin: .45rem 0 0; font-size: clamp(2.8rem, 5vw, 4.8rem); line-height: .95; }
+        .section-intro { max-width: 440px; margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.8; }
+        .filter-list { display: flex; flex-wrap: wrap; gap: .55rem; margin: 2rem 0 1.6rem; }
+        .filter-button { min-height: 38px; padding: .65rem .9rem; border-radius: 99px; color: #c6bdad; font-size: .62rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+        .filter-button[aria-pressed="true"] { border-color: var(--gold); background: rgba(214, 172, 104, .13); color: var(--gold-bright); }
+        .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+        .product-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; transition: transform .25s ease, border-color .25s ease; }
+        .product-card:hover { transform: translateY(-4px); border-color: rgba(214, 172, 104, .42); }
+        .product-image { position: relative; overflow: hidden; aspect-ratio: 1 / 1.04; background: #1c1914; }
+        .product-image a { display: block; width: 100%; height: 100%; }
+        .product-image img { opacity: .92; }
+        .product-body { display: flex; flex: 1; flex-direction: column; padding: 1.25rem; }
+        .product-category { color: var(--emerald); font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        .product-title { margin: .5rem 0 .35rem; font-size: 1.75rem; line-height: 1; }
+        .product-description {
             display: -webkit-box;
+            overflow: hidden;
+            margin: .4rem 0 0;
+            color: #bdb5a7;
+            font-size: .74rem;
+            line-height: 1.75;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 4;
             line-clamp: 4;
-            overflow: hidden;
         }
-        .product-details summary { list-style: none; }
-        .product-details summary::-webkit-details-marker { display: none; }
-        .btn-gold {
-            background: #405941;
-            color: #fffdf7 !important;
-            box-shadow: 0 8px 20px rgba(52, 74, 56, 0.18);
-            transition: all 0.3s ease;
+        .product-details { margin-top: .8rem; border-top: 1px solid var(--line); padding-top: .7rem; }
+        .product-details summary { color: var(--gold); cursor: pointer; font-size: .64rem; }
+        .product-ingredients { margin: .7rem 0 0; color: #d3cbbb; font-size: .69rem; line-height: 1.7; }
+        .product-footer { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: auto; padding-top: 1.15rem; }
+        .product-price { color: var(--gold-bright); font: 600 1.45rem var(--serif); white-space: nowrap; }
+        .add-button { min-height: 39px; padding: .65rem .75rem; font-size: .58rem; }
+        .story { border-block: 1px solid var(--line); background: linear-gradient(100deg, rgba(32, 42, 33, .5), transparent 70%); }
+        .story-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 8vw, 7rem); align-items: center; }
+        .story-mark { display: flex; min-height: 270px; align-items: center; justify-content: center; border: 1px solid var(--line); background: radial-gradient(ellipse at center, rgba(98, 126, 87, .19), transparent 68%); color: var(--gold); font: 500 8rem var(--serif); }
+        .story h2 { margin: .7rem 0 1rem; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: .95; }
+        .story-copy { color: #c5bdaf; font-size: .86rem; line-height: 1.9; }
+        .faq-list { display: grid; gap: .7rem; margin-top: 2rem; }
+        .faq-card { padding: 1.2rem 1.4rem; }
+        .faq-card summary { display: flex; justify-content: space-between; gap: 1rem; cursor: pointer; font: 500 1.45rem var(--serif); list-style: none; }
+        .faq-card summary::-webkit-details-marker { display: none; }
+        .faq-card summary::after { color: var(--gold); content: "+"; font: 400 1.2rem var(--sans); }
+        .faq-card[open] summary::after { content: "−"; }
+        .faq-card p { margin: .9rem 0 .2rem; color: #c1b8a8; font-size: .78rem; line-height: 1.85; }
+        .footer { padding: 3rem 0; border-top: 1px solid var(--line); background: #0e0d0b; }
+        .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2rem; }
+        .footer-logo { width: 160px; max-height: 52px; object-fit: contain; object-position: left; }
+        .footer p, .footer a { color: #b8b0a1; font-size: .72rem; line-height: 1.8; }
+        .footer a:hover { color: var(--gold-bright); }
+        .footer h3 { margin: 0; color: var(--cream); font: 700 .65rem var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+        .copyright { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); color: #817a6e; font-size: .62rem; }
+        .drawer-layer[hidden] { display: none; }
+        .drawer-layer { position: fixed; z-index: 50; inset: 0; }
+        .drawer-backdrop { position: absolute; inset: 0; width: 100%; border: 0; background: rgba(0, 0, 0, .74); backdrop-filter: blur(5px); cursor: pointer; }
+        .drawer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            width: min(100%, 470px);
+            height: 100%;
+            flex-direction: column;
+            border-left: 1px solid var(--line);
+            background: #11100e;
+            box-shadow: -24px 0 90px rgba(0, 0, 0, .5);
         }
-        .btn-gold:hover {
-            background: #2f4634;
-            transform: translateY(-1px);
-            box-shadow: 0 12px 24px rgba(52, 74, 56, 0.24);
+        .drawer-header, .drawer-footer { padding: 1.3rem 1.4rem; }
+        .drawer-header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+        .drawer-header h2 { margin: .15rem 0 0; font-size: 1.8rem; }
+        .drawer-close { min-width: 42px; min-height: 42px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+        .drawer-content { flex: 1; overflow-y: auto; padding: 1.1rem 1.4rem; }
+        .shipping-meter { margin-bottom: 1rem; padding: .8rem; border: 1px solid var(--line); background: rgba(255, 255, 255, .025); }
+        .shipping-copy { margin: 0 0 .6rem; color: var(--gold-bright); font-size: .7rem; }
+        .meter-track { height: 4px; overflow: hidden; background: rgba(255, 255, 255, .1); }
+        .meter-fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--gold), var(--emerald)); transition: width .25s ease; }
+        .cart-empty { padding: 2.5rem 1rem; color: var(--muted); text-align: center; font: 500 1.5rem var(--serif); }
+        .cart-row { display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--line); }
+        .cart-row h3 { margin: 0; font-size: 1.2rem; }
+        .cart-row p { margin: .25rem 0 0; color: var(--muted); font-size: .7rem; }
+        .cart-row-controls { display: flex; align-items: center; gap: .45rem; }
+        .quantity-button { width: 29px; height: 29px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+        .quantity-value { min-width: 20px; text-align: center; font-size: .72rem; }
+        .remove-button { grid-column: 1 / -1; justify-self: start; padding: 0; border: 0; background: transparent; color: #c58d7d; cursor: pointer; font-size: .62rem; text-transform: uppercase; }
+        .drawer-footer { border-top: 1px solid var(--line); }
+        .subtotal { display: flex; justify-content: space-between; margin-bottom: .95rem; font-size: .77rem; }
+        .subtotal strong { color: var(--gold-bright); font: 600 1.35rem var(--serif); }
+        .checkout-section { margin-top: 1rem; padding-top: .9rem; border-top: 1px solid var(--line); }
+        .checkout-section h3 { margin: 0 0 .65rem; font-size: 1.25rem; }
+        .checkout-note, .checkout-status { color: var(--muted); font-size: .66rem; line-height: 1.6; }
+        .checkout-status { min-height: 1.2rem; margin: .45rem 0; color: var(--gold-bright); }
+        .payment-mount { min-height: 42px; }
+        .payment-fallback { padding: .65rem; border: 1px dashed var(--line); color: #a69d8d; font-size: .65rem; line-height: 1.65; }
+        #stripe-payment-form { display: grid; gap: .65rem; margin-top: .65rem; }
+        #stripe-express-checkout { min-height: 45px; }
+        #stripe-payment-element { min-height: 42px; }
+        .whatsapp-button { width: 100%; margin-top: .75rem; background: #294b35; color: white; }
+        .whatsapp-button:hover { background: #346044; }
+        .noscript { margin: 1rem; padding: .8rem; border: 1px solid #8b5748; color: #f1b39d; font-size: .75rem; }
+        [hidden] { display: none !important; }
+        @media (max-width: 900px) {
+            .desktop-nav { gap: 1rem; }
+            .hero-grid { grid-template-columns: 1fr .8fr; gap: 2rem; }
+            .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .section-heading { align-items: start; flex-direction: column; }
         }
-        .nav-link:focus-visible, button:focus-visible, a:focus-visible, summary:focus-visible {
-            outline: 3px solid #a9844d;
-            outline-offset: 3px;
-        }
-        #primary-navigation.mobile-menu { display: none; }
-        #cart-drawer:not(.hidden) { display: block; }
-        #cart-panel { background: #f6f3eb; }
-        .cart-backdrop { background-color: rgba(26, 36, 28, 0.58) !important; }
-        #cart-items button { color: #7d493f; }
-        @media (max-width: 767px) {
-            .hero-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-            #primary-navigation.mobile-menu.open {
+        @media (max-width: 680px) {
+            .header-inner, .wrap { width: min(100% - 32px, 520px); }
+            .header-inner { min-height: 66px; }
+            .brand img { width: 142px; max-height: 48px; }
+            .desktop-nav { display: none; }
+            .menu-button { display: inline-grid; place-items: center; }
+            .mobile-nav.open {
                 position: absolute;
                 top: 100%;
-                left: 0;
                 right: 0;
-                display: flex;
-                flex-direction: column;
-                gap: 0;
-                padding: 0.5rem 1.5rem 1rem;
-                background: #f6f3eb;
-                border-bottom: 1px solid #e5dfd2;
-                box-shadow: 0 12px 24px rgba(38, 54, 45, 0.08);
+                left: 0;
+                display: grid;
+                padding: .4rem 1rem 1rem;
+                border-bottom: 1px solid var(--line);
+                background: #100f0d;
             }
-            #primary-navigation.mobile-menu a { padding: 0.85rem 0; }
-        }
-        @media (min-width: 768px) {
-            #primary-navigation.mobile-menu { display: flex; }
+            .mobile-nav a { padding: .85rem .4rem; border-bottom: 1px solid var(--line); color: #d4c9b5; font-size: .7rem; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+            .announcement { font-size: .55rem; letter-spacing: .11em; }
+            .hero { padding: 4.4rem 0; }
+            .hero-grid { grid-template-columns: 1fr; }
+            h1 { max-width: 570px; font-size: clamp(3.65rem, 15vw, 5.8rem); }
+            .hero-copy { font-size: .85rem; }
+            .feature-card { max-width: 440px; }
+            .feature-image { aspect-ratio: 4 / 3.4; }
+            .section { padding: 4.4rem 0; }
+            .section-heading h2 { font-size: 3.35rem; }
+            .filter-list { gap: .45rem; }
+            .filter-button { padding-inline: .7rem; font-size: .55rem; }
+            .product-grid { grid-template-columns: 1fr; gap: .9rem; }
+            .product-card { display: grid; grid-template-columns: 38% 1fr; }
+            .product-image { min-height: 100%; aspect-ratio: auto; }
+            .product-body { padding: .95rem; }
+            .product-title { font-size: 1.5rem; }
+            .product-description { font-size: .69rem; }
+            .product-footer { align-items: start; flex-direction: column; }
+            .add-button { width: 100%; }
+            .story-grid { grid-template-columns: 1fr; }
+            .story-mark { min-height: 150px; font-size: 5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 1.4rem; }
+            .drawer-header, .drawer-footer { padding-inline: 1rem; }
+            .drawer-content { padding-inline: 1rem; }
         }
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
         }
     </style>
+    {% if payments.paypal_enabled %}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ payments.paypal_client_id|urlencode }}&currency=USD&intent=capture&components=buttons" defer></script>
+    {% endif %}
+    {% if payments.stripe_enabled %}
+    <script src="https://js.stripe.com/v3/" defer></script>
+    {% endif %}
 </head>
-<body class="antialiased selection:bg-amber-500 selection:text-stone-950">
-    <a href="#MainContent" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-3 focus:text-stone-950">Skip to content</a>
-
-    <!-- Top Complimentary Shipping Bar -->
-    <div class="announcement-bar border-b text-center py-2.5 px-4 text-[10px] sm:text-[11px] uppercase tracking-[0.18em] font-semibold">
-        Handcrafted in Jamaica <span aria-hidden="true">·</span> Complimentary shipping on orders over $30 USD
-    </div>
-
-    <!-- Sticky Luxury Navbar -->
-    <header class="site-header sticky top-0 z-40 backdrop-blur-xl border-b">
-        <div class="relative max-w-7xl mx-auto px-5 sm:px-6 h-[4.5rem] sm:h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3" aria-label="Bare Artisan Products home">
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="announcement">Handcrafted in Jamaica <span aria-hidden="true">·</span> Complimentary shipping on orders over $30 USD</div>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="#top" aria-label="Bare Artisan Products home">
                 {% if catalog.brand.logo_url %}
-                <img src="{{ catalog.brand.logo_url }}" alt="Bare Artisan Products" class="h-10 sm:h-12 w-auto max-w-[10rem] object-contain" decoding="async">
+                <img src="{{ catalog.brand.logo_url }}" alt="Bare Artisan Products">
                 {% else %}
-                <span class="font-serif text-xl font-bold tracking-[0.12em] text-white">BARE ARTISAN</span>
+                <span class="brand-wordmark">BARE ARTISAN</span>
                 {% endif %}
             </a>
-            <nav id="primary-navigation" class="mobile-menu items-center gap-7 text-[11px] font-semibold uppercase tracking-[0.13em] text-stone-300" aria-label="Main navigation">
-                <a class="nav-link hover:text-amber-400 transition-colors" href="#collection">Shop</a>
-                <a class="nav-link hover:text-amber-400 transition-colors" href="#alchemy">Our story</a>
-                <a class="nav-link hover:text-amber-400 transition-colors" href="#faq">FAQs</a>
-                <a class="nav-link hover:text-amber-400 transition-colors" href="#concierge">Contact</a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <a href="#collection">Collection</a>
+                <a href="#story">Our story</a>
+                <a href="#faq">FAQs</a>
+                <a href="#concierge">Concierge</a>
             </nav>
-            <div class="flex items-center gap-2">
-                <button id="menu-toggle" class="md:hidden p-2 rounded-lg text-stone-300" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu">
-                    <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            <div class="header-actions">
+                <button id="menu-toggle" class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
                 </button>
-                <button onclick="toggleCart()" class="flex items-center gap-2 bg-stone-900 hover:bg-stone-800 border border-stone-700/80 px-3 sm:px-4 py-2.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white transition-all" type="button" aria-label="Open shopping bag" aria-expanded="false" aria-controls="cart-drawer">
-                    <span>Bag</span>
-                    <span id="cart-count" class="bg-amber-600 text-white text-[10px] px-2 py-0.5 rounded-full" aria-live="polite">0</span>
+                <button id="bag-open" class="bag-button" type="button" aria-haspopup="dialog" aria-controls="cart-drawer">
+                    Apothecary bag <span id="cart-count" class="bag-count" aria-live="polite">0</span>
                 </button>
             </div>
+            <nav id="mobile-navigation" class="mobile-nav" aria-label="Mobile navigation">
+                <a href="#collection">Collection</a>
+                <a href="#story">Our story</a>
+                <a href="#faq">FAQs</a>
+                <a href="#concierge">Concierge</a>
+            </nav>
         </div>
     </header>
 
-    <main id="MainContent">
-    <!-- Editorial Hero Section -->
-    <section class="hero-section relative py-20 md:py-28 px-6 border-b border-stone-900 overflow-hidden">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7">
-                <div class="inline-flex items-center gap-2 bg-stone-900/90 border border-amber-500/30 px-4 py-1.5 rounded-full mb-6">
-                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                    <span class="text-amber-300 text-[11px] font-semibold uppercase tracking-[0.2em]">Small batches · Made with care in Jamaica</span>
-                </div>
-
-                <h1 class="text-5xl sm:text-6xl md:text-7xl font-serif font-bold text-white leading-[1.08]">
-                    A little island<br>
-                    <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-emerald-300">in your daily ritual.</span>
-                </h1>
-
-                <p class="text-stone-300 text-base md:text-lg max-w-2xl mt-6 leading-relaxed">
-                    Meet thoughtful skincare inspired by Jamaica. Explore richly textured body butters, botanical oils and everyday essentials, made in small batches with ingredients rooted in the island.
-                </p>
-
-                <div class="mt-10 flex flex-wrap items-center gap-4">
-                    <a href="#collection" class="btn-gold text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full">
-                        Shop the collection
-                    </a>
-                    <a href="#alchemy" class="bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full transition-all">
-                        Our approach
-                    </a>
-                </div>
-
-                <div class="mt-12 pt-8 border-t border-stone-800/80 grid grid-cols-3 gap-6 max-w-lg">
-                    <div>
-                        <div class="text-2xl font-serif font-bold text-amber-400">{{ catalog.products|length }}</div>
-                        <div class="text-[11px] uppercase tracking-wider text-stone-400">Botanical essentials</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-serif font-bold text-amber-400">Jamaica</div>
-                        <div class="text-[11px] uppercase tracking-wider text-stone-400">Made with care</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-serif font-bold text-amber-400">$30+</div>
-                        <div class="text-[11px] uppercase tracking-wider text-stone-400">Free shipping threshold</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hero Featured Product Spotlight Card -->
-            <div class="lg:col-span-5">
-                <div class="glass-card rounded-3xl p-6 md:p-8 relative">
-                    <span class="absolute top-6 right-6 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-                    From the collection
-                    </span>
-                    <div class="overflow-hidden rounded-2xl mb-6 border border-stone-800 bg-stone-950 h-80">
-                        {% if featured_product.image_url %}
-                        <img src="{{ featured_product.image_url }}" alt="{{ featured_product.image_alt }}" class="w-full h-full object-cover" fetchpriority="high">
-                        {% endif %}
-                    </div>
-                    <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold">{{ featured_product.categories|join(" · ") }}</span>
-                    <h3 class="text-3xl font-serif font-bold text-white mt-1">{{ featured_product.name }}</h3>
-                    <p class="text-stone-300 text-sm mt-2 leading-relaxed">{{ featured_product.description }}</p>
-                    <div class="mt-6 flex items-center justify-between pt-4 border-t border-stone-800">
-                        <span class="text-2xl sm:text-3xl font-serif font-bold text-white">{{ featured_product.price_label }}</span>
-                        <button type="button" class="add-to-cart btn-gold text-white text-xs font-bold uppercase tracking-widest py-3.5 px-6 rounded-xl" data-product-name="{{ featured_product.name }}" data-product-price="{{ featured_product.price }}">
-                            Add to Bag
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Full Product Catalog Section -->
-    <section id="collection" class="py-24 max-w-7xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div>
-                <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Small-Batch Apothecary</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mt-1">Complete Botanical Collection</h2>
-            </div>
-
-            <!-- Instant Category Filter Pills -->
-            <div class="flex flex-wrap gap-2">
-                <button type="button" data-filter="all" aria-pressed="true" class="cat-btn bg-amber-600 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">All products <span>({{ catalog.products|length }})</span></button>
-                {% for category in catalog.categories %}
-                <button type="button" data-filter="{{ category.handle }}" data-category-name="{{ category.name }}" data-description="{{ category.description }}" data-ingredients="{{ category.ingredients }}" aria-pressed="false" class="cat-btn bg-stone-900 text-stone-400 hover:text-white border border-stone-800 text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">
-                    {{ category.name }} <span>({{ category.count }})</span>
-                </button>
-                {% endfor %}
-            </div>
-        </div>
-
-        <details id="category-context" class="glass-card rounded-2xl p-5 sm:p-6 mb-8" hidden>
-            <summary id="category-context-title" class="font-serif text-xl font-bold text-white cursor-pointer">Collection details</summary>
-            <p id="category-context-description" class="text-stone-300 text-sm leading-relaxed mt-3"></p>
-            <p id="category-context-ingredients" class="text-stone-300 text-sm leading-relaxed mt-3" hidden></p>
-        </details>
-
-        <!-- Catalog cards are rendered from the latest Shopify catalog snapshot. -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="catalog-grid" aria-live="polite">
-            {% for product in catalog.products %}
-            <article class="glass-card rounded-2xl p-5 sm:p-6 flex flex-col justify-between catalog-item" data-categories="{{ product.category_handles|join(' ') }}">
+    <main id="main-content">
+        <section id="top" class="hero">
+            <div class="wrap hero-grid">
                 <div>
-                    <a href="{{ product.product_url }}" target="_blank" rel="noopener noreferrer" class="block relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64" aria-label="View {{ product.name }} on Bare Artisan Products">
-                        {% if product.image_url %}
-                        <img src="{{ product.image_url }}" alt="{{ product.image_alt }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async">
-                        {% else %}
-                        <span class="w-full h-full flex items-center justify-center text-stone-400 text-sm">{{ product.name }}</span>
+                    <span class="eyebrow">Botanical care, rooted in Jamaica</span>
+                    <h1>A slower kind<br>of <em>skin ritual.</em></h1>
+                    <p class="hero-copy">Small-batch body care shaped by the plants, warmth and everyday rituals of Jamaica. Thoughtful textures, familiar botanicals, and a little more room to slow down.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#collection">Explore the collection <span aria-hidden="true">↗</span></a>
+                        <a class="button button-secondary" href="#story">Discover our story</a>
+                    </div>
+                    <p class="hero-note">Nine essentials · Made with care · Free shipping over $30</p>
+                </div>
+                <article class="feature-card">
+                    <div class="feature-image">
+                        {% if featured_product.image_url %}
+                        <img src="{{ featured_product.image_url }}" alt="{{ featured_product.image_alt }}" fetchpriority="high">
                         {% endif %}
-                    </a>
-                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">{{ product.categories|join(' / ') }}</span>
-                    <h3 class="text-2xl font-serif font-bold text-white mt-1">{{ product.name }}</h3>
-                    {% if product.description %}
-                    <p class="product-summary text-stone-400 text-sm leading-relaxed mt-2">{{ product.description[:220] }}{% if product.description|length > 220 %}...{% endif %}</p>
-                    <details class="product-details mt-4 border-t border-stone-800/80 pt-3">
-                        <summary class="text-xs font-semibold text-amber-400 cursor-pointer">Full description and ingredients</summary>
-                        <p class="text-stone-300 text-xs leading-relaxed mt-3">{{ product.description }}</p>
-                        {% if product.ingredients %}
-                        <p class="text-stone-300 text-xs leading-relaxed mt-3"><strong class="text-amber-400">Ingredients:</strong> {{ product.ingredients }}</p>
-                        {% endif %}
+                        <span class="feature-tag">From the apothecary</span>
+                    </div>
+                    <div class="feature-meta">
+                        <div>
+                            <p>{{ featured_product.categories|join(" · ") }}</p>
+                            <h2 class="feature-name">{{ featured_product.name }}</h2>
+                        </div>
+                        <span class="feature-price">{{ featured_product.price_label }}</span>
+                    </div>
+                    <button class="button button-primary add-button add-to-cart" type="button" data-sku="{{ featured_product.sku }}">Add to bag</button>
+                </article>
+            </div>
+        </section>
+
+        <section id="collection" class="section">
+            <div class="wrap">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">The botanical collection</span>
+                        <h2>Made for your<br>everyday ritual.</h2>
+                    </div>
+                    <p class="section-intro">Explore nine Bare Artisan favorites, from richly textured body butters to a refreshing aloe mist. Select a ritual, then discover the details.</p>
+                </div>
+                <div class="filter-list" role="group" aria-label="Filter products by category">
+                    <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All goods <span>({{ catalog.products|length }})</span></button>
+                    {% for category in catalog.categories %}
+                    <button class="filter-button" type="button" data-filter="{{ category.key }}" aria-pressed="false">{{ category.name }} <span>({{ category.count }})</span></button>
+                    {% endfor %}
+                </div>
+                <div id="catalog-grid" class="product-grid" aria-live="polite">
+                    {% for product in catalog.products %}
+                    <article class="product-card" data-category="{{ product.category_key }}">
+                        <div class="product-image">
+                            <a href="{{ product.product_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ product.name }} on Bare Artisan Products">
+                                {% if product.image_url %}
+                                <img src="{{ product.image_url }}" alt="{{ product.image_alt }}" loading="lazy" decoding="async">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="product-body">
+                            <span class="product-category">{{ product.category_label }}</span>
+                            <h3 class="product-title">{{ product.name }}</h3>
+                            <p class="product-description">{{ product.description }}</p>
+                            <details class="product-details">
+                                <summary>Active ingredients & details</summary>
+                                <p class="product-ingredients"><strong>Product details:</strong> {{ product.description }}</p>
+                                {% if product.ingredients %}
+                                <p class="product-ingredients"><strong>Ingredients:</strong> {{ product.ingredients }}</p>
+                                {% else %}
+                                <p class="product-ingredients">See the full product details at Bare Artisan Products.</p>
+                                {% endif %}
+                                <a class="product-ingredients" href="{{ product.product_url }}" target="_blank" rel="noopener noreferrer">View the product at the official store ↗</a>
+                            </details>
+                            <div class="product-footer">
+                                <span class="product-price">{{ product.price_label }}</span>
+                                {% if product.available %}
+                                <button class="button button-primary add-button add-to-cart" type="button" data-sku="{{ product.sku }}">Add to bag</button>
+                                {% else %}
+                                <button class="button add-button" type="button" disabled>Currently unavailable</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="section story">
+            <div class="wrap story-grid">
+                <div class="story-mark" aria-hidden="true">B.</div>
+                <div>
+                    <span class="eyebrow">The island in every ritual</span>
+                    <h2>A little more<br>closely considered.</h2>
+                    <p class="story-copy">{{ catalog.brand.story }}</p>
+                    <a class="button button-secondary" href="https://bareartisanproducts.com/" target="_blank" rel="noopener noreferrer">Meet Bare Artisan <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <div class="wrap">
+                <span class="eyebrow">A few good things to know</span>
+                <h2 class="serif" style="margin:.5rem 0 0;font-size:clamp(2.8rem,5vw,4.5rem)">The apothecary notes.</h2>
+                <div class="faq-list">
+                    <details class="faq-card" open>
+                        <summary>Why can commercial lotions leave skin feeling dry?</summary>
+                        <p>Some lotions can feel light or evaporate quickly. Bare Artisan's store describes its body butters as a richer blend of shea butter and infused coconut oil. Skin responds differently for everyone; review the full ingredients and patch-test a new product if you have sensitive skin.</p>
                     </details>
-                    {% elif product.ingredients %}
-                    <p class="text-stone-300 text-xs leading-relaxed mt-3"><strong class="text-amber-400">Ingredients:</strong> {{ product.ingredients }}</p>
-                    {% endif %}
+                    <details class="faq-card">
+                        <summary>When does complimentary shipping begin?</summary>
+                        <p>Orders of $30 USD or more qualify for complimentary shipping. The bag updates the progress meter as you add products. Final delivery terms are confirmed with the concierge when you place your order.</p>
+                    </details>
+                    <details class="faq-card">
+                        <summary>How do I reach the Jamaican concierge?</summary>
+                        <p>Call or WhatsApp <a href="https://wa.me/18762874304" target="_blank" rel="noopener noreferrer">(876) 287-4304</a> or <a href="https://wa.me/18763655202" target="_blank" rel="noopener noreferrer">(876) 365-5202</a>, or email <a href="mailto:baresoap876@gmail.com">baresoap876@gmail.com</a>.</p>
+                    </details>
                 </div>
-                <div class="mt-6 flex items-center justify-between gap-3">
-                    <span class="text-xl sm:text-2xl font-serif font-bold text-white">{{ product.price_label }}</span>
-                    {% if product.available %}
-                    <button type="button" class="add-to-cart btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-xl" data-product-name="{{ product.name }}" data-product-price="{{ product.price }}">+ Add to Bag</button>
-                    {% else %}
-                    <button type="button" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-4 rounded-xl" disabled>Sold out</button>
-                    {% endif %}
-                </div>
-            </article>
-            {% else %}
-            <p class="col-span-full text-center text-stone-400">No products are in the catalog yet. Run the catalog sync to refresh the inventory.</p>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section id="alchemy" class="py-20 md:py-28 px-6 bg-stone-900/50 border-y border-stone-900">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 md:gap-20 items-center">
-            <div class="relative overflow-hidden rounded-[2rem] min-h-[20rem] md:min-h-[30rem]">
-                <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1200&q=85" alt="Warm tropical countryside at golden hour" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async">
-                <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent"></div>
-                <p class="absolute bottom-6 left-6 text-white text-xs uppercase tracking-[0.2em]">Rooted in Jamaica</p>
             </div>
-            <div class="max-w-xl">
-                <span class="text-xs uppercase tracking-[0.2em] text-amber-400 font-semibold">A little more about us</span>
-                <h2 class="text-4xl md:text-6xl font-serif font-bold text-white mt-3 leading-[1.05]">Made slowly.<br><span class="italic font-normal">Inspired by the island.</span></h2>
-                <p class="text-stone-300 leading-relaxed mt-6">{{ catalog.brand.story }}</p>
-                <a href="#collection" class="inline-flex items-center gap-3 mt-8 text-xs uppercase tracking-[0.16em] font-bold text-amber-400 hover:text-emerald-400 transition-colors">Find your daily ritual <span aria-hidden="true">→</span></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Botanical Philosophy & Interactive FAQ -->
-    <section id="faq" class="py-20 bg-stone-950/80 border-t border-stone-900">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Conscious Skincare Knowledge</span>
-                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mt-1">Apothecary Standards & Rituals</h2>
-            </div>
-
-            <div class="space-y-4">
-                <details class="glass-card rounded-2xl p-6 group" open>
-                    <summary class="font-serif text-xl font-bold text-white cursor-pointer flex items-center justify-between">
-                        <span>What makes a body butter different from a lotion?</span>
-                        <span class="text-amber-400 text-sm">+</span>
-                    </summary>
-                    <p class="text-stone-300 text-sm leading-relaxed mt-3">
-                        Body butters are typically richer and thicker than lotions. Bare Artisan's body butter blends shea butter with coconut oil for a more substantial texture. Check each product's ingredient list and patch test new products if you have sensitive skin.
-                    </p>
-                </details>
-
-                <details class="glass-card rounded-2xl p-6 group">
-                    <summary class="font-serif text-xl font-bold text-white cursor-pointer flex items-center justify-between">
-                        <span>How do I qualify for Complimentary Shipping?</span>
-                        <span class="text-amber-400 text-sm">+</span>
-                    </summary>
-                    <p class="text-stone-300 text-sm leading-relaxed mt-3">
-                        All orders of $30.00 USD or more automatically receive complimentary shipping. A single jar of Bare Dream Cream or Bare Rosemary Body Butter ($30.00 USD) unlocks free delivery immediately.
-                    </p>
-                </details>
-
-                <details class="glass-card rounded-2xl p-6 group">
-                    <summary class="font-serif text-xl font-bold text-white cursor-pointer flex items-center justify-between">
-                        <span>How can I speak directly with the Bare Artisan team in Jamaica?</span>
-                        <span class="text-amber-400 text-sm">+</span>
-                    </summary>
-                    <p class="text-stone-300 text-sm leading-relaxed mt-3">
-                        Call or WhatsApp us directly at <strong>(876) 287-4304</strong> or <strong>(876) 365-5202</strong>, or email <strong>baresoap876@gmail.com</strong> for custom wholesale, gift boxes, or skincare consultations.
-                    </p>
-                </details>
-            </div>
-        </div>
-    </section>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer id="concierge" class="site-footer bg-stone-950 border-t border-stone-800/80 py-16 text-stone-400 text-sm">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div>
-                <span class="text-xl font-serif font-bold text-white tracking-widest">BARE ARTISAN PRODUCTS</span>
-                <p class="mt-3 text-xs leading-relaxed text-stone-400">
-                    Small-batch body care inspired by Jamaican botanicals and made with care for everyday rituals.
-                </p>
+    <footer id="concierge" class="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    {% if catalog.brand.logo_url %}<img class="footer-logo" src="{{ catalog.brand.logo_url }}" alt="Bare Artisan Products">{% else %}<h3>Bare Artisan Products</h3>{% endif %}
+                    <p>Small-batch botanical care, made with care in Jamaica.</p>
+                </div>
+                <div>
+                    <h3>Jamaican concierge</h3>
+                    <p><a href="https://wa.me/18762874304" target="_blank" rel="noopener noreferrer">(876) 287-4304</a><br><a href="https://wa.me/18763655202" target="_blank" rel="noopener noreferrer">(876) 365-5202</a><br><a href="mailto:baresoap876@gmail.com">baresoap876@gmail.com</a></p>
+                </div>
+                <div>
+                    <h3>Visit the official store</h3>
+                    <p><a href="https://bareartisanproducts.com/" target="_blank" rel="noopener noreferrer">bareartisanproducts.com ↗</a><br>Complimentary shipping over $30 USD</p>
+                </div>
             </div>
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-3">Direct Concierge</h4>
-                <p>Phone / WhatsApp: <a href="https://wa.me/18762874304" class="text-amber-400 hover:underline">(876) 287-4304</a> / (876) 365-5202</p>
-                <p class="mt-1">Email: <a href="mailto:baresoap876@gmail.com" class="text-amber-400 hover:underline">baresoap876@gmail.com</a></p>
-            </div>
-            <div class="md:text-right">
-                <p class="text-xs uppercase tracking-widest text-amber-400">Botanical care, inspired by Jamaica</p>
-                <p class="text-xs text-stone-500 mt-2">© 2026 Bare Artisan Products. All Rights Reserved.</p>
-            </div>
+            <div class="copyright">© 2026 Bare Artisan Products. Product descriptions and imagery are provided by the official store.</div>
         </div>
     </footer>
 
-    <!-- Slide-Out Shopping Bag Drawer with $30 Free Shipping Meter -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="cart-title">
-        <button class="cart-backdrop absolute inset-0 bg-stone-950/80 backdrop-blur-sm" type="button" aria-label="Close shopping bag" onclick="toggleCart(false)"></button>
-        <div id="cart-panel" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-stone-900 border-l border-stone-800 p-6 sm:p-8 flex flex-col justify-between shadow-2xl overflow-y-auto" tabindex="-1">
-            <div>
-                <div class="flex items-center justify-between pb-5 border-b border-stone-800">
-                    <div>
-                        <span class="text-[10px] uppercase tracking-widest text-amber-400">Small-Batch Order</span>
-                        <h3 id="cart-title" class="text-2xl font-serif font-bold text-white">Your Apothecary Bag</h3>
-                    </div>
-                    <button id="cart-close" onclick="toggleCart(false)" type="button" class="text-stone-400 hover:text-white text-xs uppercase tracking-widest border border-stone-700 px-3 py-1.5 rounded-lg">Close</button>
-                </div>
+    <noscript><p class="noscript">JavaScript is needed for the shopping bag, category filters and checkout buttons.</p></noscript>
 
-                <!-- Dynamic Free Shipping Progress Bar -->
-                <div class="my-4 bg-stone-950 border border-stone-800 p-3.5 rounded-xl">
-                    <div id="shipping-text" class="text-xs text-amber-300 font-medium mb-2">Add $30.00 more for FREE Shipping!</div>
-                    <div class="w-full h-1.5 bg-stone-800 rounded-full overflow-hidden">
-                        <div id="shipping-bar" class="h-full bg-gradient-to-r from-amber-500 to-emerald-400 transition-all duration-500" style="width: 0%"></div>
-                    </div>
+    <div id="cart-drawer" class="drawer-layer" hidden>
+        <button id="drawer-backdrop" class="drawer-backdrop" type="button" aria-label="Close apothecary bag"></button>
+        <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1">
+            <header class="drawer-header">
+                <div><span class="eyebrow">Small-batch order</span><h2 id="cart-title">Your apothecary bag</h2></div>
+                <button id="bag-close" class="drawer-close" type="button" aria-label="Close bag">×</button>
+            </header>
+            <div class="drawer-content">
+                <div class="shipping-meter">
+                    <p id="shipping-copy" class="shipping-copy" aria-live="polite">Add $30.00 USD for complimentary shipping.</p>
+                    <div class="meter-track" role="progressbar" aria-label="Free shipping progress" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0"><div id="shipping-fill" class="meter-fill"></div></div>
                 </div>
-
-                <div id="cart-items" class="py-4 space-y-3 max-h-[50vh] overflow-y-auto text-sm">
-                    <p class="text-stone-500 text-center py-10">Your apothecary bag is empty.</p>
-                </div>
+                <div id="cart-items" aria-live="polite"><p class="cart-empty">Your bag is waiting for a ritual.</p></div>
+                <section class="checkout-section" aria-labelledby="paypal-title">
+                    <h3 id="paypal-title">PayPal</h3>
+                    {% if payments.paypal_enabled %}
+                    <div id="paypal-buttons" class="payment-mount"></div>
+                    {% else %}
+                    <p class="payment-fallback">PayPal checkout is ready to connect. Set <code>PAYPAL_CLIENT_ID</code>, <code>PAYPAL_CLIENT_SECRET</code>, and <code>PAYPAL_ENVIRONMENT</code> in the deployment environment.</p>
+                    {% endif %}
+                </section>
+                <section class="checkout-section" aria-labelledby="stripe-title">
+                    <h3 id="stripe-title">Express checkout</h3>
+                    {% if payments.stripe_enabled %}
+                    <form id="stripe-payment-form">
+                        <button id="stripe-start" class="button button-secondary" type="button">Load secure payment options</button>
+                        <div id="stripe-payment-options" hidden>
+                            <div id="stripe-express-checkout"></div>
+                            <div id="stripe-payment-element"></div>
+                            <button class="button button-primary" type="submit">Pay securely</button>
+                        </div>
+                    </form>
+                    <p class="checkout-note">Apple Pay and Google Pay appear when supported by your browser, device and Stripe account.</p>
+                    {% else %}
+                    <p class="payment-fallback">Stripe, Apple Pay and Google Pay appear here when configured. Set <code>STRIPE_SECRET_KEY</code> and <code>STRIPE_PUBLISHABLE_KEY</code>; verify your domain in Stripe to enable wallets.</p>
+                    {% endif %}
+                    <p id="checkout-status" class="checkout-status" role="status" aria-live="polite"></p>
+                </section>
             </div>
-
-            <div class="pt-6 border-t border-stone-800">
-                <div class="flex items-center justify-between text-lg font-bold text-white mb-5">
-                    <span>Subtotal</span>
-                    <span id="cart-total" class="text-amber-400">$0.00 USD</span>
-                </div>
-                <button onclick="checkoutWhatsApp()" class="w-full btn-gold text-white text-xs font-bold uppercase tracking-widest py-4 px-6 rounded-xl text-center">
-                    Complete Order via WhatsApp (876-287-4304)
-                </button>
-            </div>
-        </div>
+            <footer class="drawer-footer">
+                <div class="subtotal"><span>Subtotal <small>USD</small></span><strong id="cart-total">$0.00</strong></div>
+                <p id="shipping-qualification" class="checkout-note">Shipping is confirmed with the concierge.</p>
+                <button id="whatsapp-checkout" class="button whatsapp-button" type="button">Continue with WhatsApp concierge ↗</button>
+            </footer>
+        </aside>
     </div>
 
     <script>
-        let cart = [];
-        const menuToggle = document.getElementById('menu-toggle');
-        const navigation = document.getElementById('primary-navigation');
-        const cartDrawer = document.getElementById('cart-drawer');
-        const cartButton = document.querySelector('[aria-label="Open shopping bag"]');
-        const categoryContext = document.getElementById('category-context');
-        const categoryContextTitle = document.getElementById('category-context-title');
-        const categoryContextDescription = document.getElementById('category-context-description');
-        const categoryContextIngredients = document.getElementById('category-context-ingredients');
+        (() => {
+            "use strict";
+            const products = {{ catalog.products|tojson }};
+            const productBySku = new Map(products.map(product => [product.sku, product]));
+            const cart = new Map();
+            const drawerLayer = document.getElementById("cart-drawer");
+            const drawer = drawerLayer.querySelector(".drawer");
+            const cartItems = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            const cartCount = document.getElementById("cart-count");
+            const shippingCopy = document.getElementById("shipping-copy");
+            const shippingFill = document.getElementById("shipping-fill");
+            const progressBar = shippingFill.parentElement;
+            const shippingQualification = document.getElementById("shipping-qualification");
+            const checkoutStatus = document.getElementById("checkout-status");
+            const money = cents => `$${(cents / 100).toFixed(2)}`;
+            const totalCents = () => [...cart.values()].reduce((sum, item) => sum + item.product.price_cents * item.quantity, 0);
+            const orderItems = () => [...cart.values()].map(item => ({ sku: item.product.sku, quantity: item.quantity }));
+            let returnFocus = null;
+            let stripeClient = null;
+            let stripeElements = null;
+            let stripeIntent = null;
 
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
-            menuToggle.setAttribute('aria-label', isExpanded ? 'Open menu' : 'Close menu');
-            navigation.classList.toggle('open', !isExpanded);
-        });
-        navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.setAttribute('aria-label', 'Open menu');
-            if (window.matchMedia('(max-width: 767px)').matches) navigation.classList.remove('open');
-        }));
-
-        document.querySelectorAll('.cat-btn').forEach(button => {
-            button.addEventListener('click', () => filterCategory(button.dataset.filter, button));
-        });
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', () => {
-                addToCart(button.dataset.productName, Number(button.dataset.productPrice));
-            });
-        });
-
-        function filterCategory(cat, btn) {
-            document.querySelectorAll('.cat-btn').forEach(b => {
-                b.className = 'cat-btn bg-stone-900 text-stone-400 hover:text-white border border-stone-800 text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all';
-                b.setAttribute('aria-pressed', 'false');
-            });
-            btn.className = 'cat-btn bg-amber-600 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all';
-            btn.setAttribute('aria-pressed', 'true');
-            const description = cat === 'all' ? '' : btn.dataset.description;
-            const ingredients = cat === 'all' ? '' : btn.dataset.ingredients;
-            categoryContext.hidden = !description && !ingredients;
-            categoryContextTitle.textContent = cat === 'all' ? 'Collection details' : btn.dataset.categoryName;
-            categoryContextDescription.textContent = description;
-            categoryContextDescription.hidden = !description;
-            categoryContextIngredients.textContent = ingredients ? `Ingredients listed for this collection: ${ingredients}` : '';
-            categoryContextIngredients.hidden = !ingredients;
-            document.querySelectorAll('.catalog-item').forEach(el => {
-                const categories = el.dataset.categories.split(' ');
-                el.style.display = (cat === 'all' || categories.includes(cat)) ? 'flex' : 'none';
-            });
-        }
-
-        function toggleCart(forceOpen) {
-            const shouldOpen = forceOpen ?? cartDrawer.classList.contains('hidden');
-            cartDrawer.classList.toggle('hidden', !shouldOpen);
-            cartButton.setAttribute('aria-expanded', String(shouldOpen));
-            if (shouldOpen) {
-                document.getElementById('cart-close').focus();
-            } else {
-                cartButton.focus();
-            }
-        }
-
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            renderCart();
-            toggleCart(true);
-        }
-
-        function removeFromCart(idx) {
-            cart.splice(idx, 1);
-            renderCart();
-        }
-
-        function renderCart() {
-            document.getElementById('cart-count').innerText = cart.length;
-            const list = document.getElementById('cart-items');
-            const totalEl = document.getElementById('cart-total');
-            const shipText = document.getElementById('shipping-text');
-            const shipBar = document.getElementById('shipping-bar');
-
-            const total = cart.reduce((s, i) => s + i.price, 0);
-            totalEl.innerText = `$${total.toFixed(2)} USD`;
-
-            const pct = Math.min(100, (total / 30) * 100);
-            shipBar.style.width = `${pct}%`;
-            shipText.innerText = total >= 30 
-                ? '✓ You unlocked FREE Complimentary Shipping!' 
-                : `Add $${(30 - total).toFixed(2)} USD more for FREE Shipping!`;
-
-            if (cart.length === 0) {
-                list.innerHTML = '<p class="text-stone-500 text-center py-10">Your apothecary bag is empty.</p>';
-                return;
+            function setStatus(message, isError = false) {
+                checkoutStatus.textContent = message;
+                checkoutStatus.style.color = isError ? "#f1a28b" : "";
             }
 
-            list.replaceChildren();
-            cart.forEach((item, index) => {
-                const row = document.createElement('div');
-                row.className = 'flex items-center justify-between bg-stone-950 border border-stone-800 p-3.5 rounded-xl';
+            function resetStripeCheckout() {
+                if (!stripeIntent) return;
+                stripeOptions.hidden = true;
+                stripeOptions.querySelector("#stripe-express-checkout").replaceChildren();
+                stripeOptions.querySelector("#stripe-payment-element").replaceChildren();
+                stripeStart.hidden = false;
+                stripeStart.disabled = false;
+                stripeElements = null;
+                stripeIntent = null;
+            }
 
-                const details = document.createElement('div');
-                const name = document.createElement('div');
-                name.className = 'font-semibold text-white';
-                name.textContent = item.name;
-                const price = document.createElement('div');
-                price.className = 'text-xs text-amber-400';
-                price.textContent = `$${item.price.toFixed(2)} USD`;
-                details.append(name, price);
+            function setQuantity(sku, quantity) {
+                if (quantity <= 0) cart.delete(sku);
+                else cart.set(sku, { product: productBySku.get(sku), quantity });
+                resetStripeCheckout();
+                renderCart();
+            }
 
-                const remove = document.createElement('button');
-                remove.type = 'button';
-                remove.className = 'text-xs text-stone-500 hover:text-red-400 uppercase';
-                remove.textContent = 'Remove';
-                remove.addEventListener('click', () => removeFromCart(index));
-                row.append(details, remove);
-                list.append(row);
+            function addProduct(sku) {
+                const product = productBySku.get(sku);
+                if (!product || !product.available) return;
+                const current = cart.get(sku)?.quantity || 0;
+                if (current >= 10) {
+                    setStatus("Maximum quantity per product is 10.", true);
+                    return;
+                }
+                cart.set(sku, { product, quantity: current + 1 });
+                resetStripeCheckout();
+                renderCart();
+                openDrawer();
+            }
+
+            function renderCart() {
+                const entries = [...cart.entries()];
+                const count = entries.reduce((sum, [, item]) => sum + item.quantity, 0);
+                const total = totalCents();
+                cartCount.textContent = String(count);
+                cartTotal.textContent = `${money(total)} USD`;
+                const percentage = Math.min(100, total / 3000 * 100);
+                shippingFill.style.width = `${percentage}%`;
+                progressBar.setAttribute("aria-valuenow", String(Math.min(30, total / 100)));
+                shippingCopy.textContent = total >= 3000
+                    ? "Complimentary shipping unlocked."
+                    : `Add ${money(3000 - total)} USD for complimentary shipping.`;
+                shippingQualification.textContent = total >= 3000
+                    ? "Your subtotal qualifies for complimentary shipping."
+                    : "Shipping is confirmed with the concierge.";
+                cartItems.replaceChildren();
+                if (!entries.length) {
+                    const empty = document.createElement("p");
+                    empty.className = "cart-empty";
+                    empty.textContent = "Your bag is waiting for a ritual.";
+                    cartItems.append(empty);
+                }
+                entries.forEach(([sku, item]) => {
+                    const row = document.createElement("article");
+                    row.className = "cart-row";
+                    const description = document.createElement("div");
+                    const title = document.createElement("h3");
+                    title.textContent = item.product.name;
+                    const price = document.createElement("p");
+                    price.textContent = `${money(item.product.price_cents)} each · ${money(item.product.price_cents * item.quantity)} USD`;
+                    description.append(title, price);
+                    const controls = document.createElement("div");
+                    controls.className = "cart-row-controls";
+                    const decrease = document.createElement("button");
+                    decrease.className = "quantity-button";
+                    decrease.type = "button";
+                    decrease.textContent = "−";
+                    decrease.setAttribute("aria-label", `Remove one ${item.product.name}`);
+                    decrease.addEventListener("click", () => setQuantity(sku, item.quantity - 1));
+                    const quantity = document.createElement("span");
+                    quantity.className = "quantity-value";
+                    quantity.textContent = String(item.quantity);
+                    const increase = document.createElement("button");
+                    increase.className = "quantity-button";
+                    increase.type = "button";
+                    increase.textContent = "+";
+                    increase.setAttribute("aria-label", `Add one ${item.product.name}`);
+                    increase.disabled = item.quantity >= 10;
+                    increase.addEventListener("click", () => setQuantity(sku, item.quantity + 1));
+                    controls.append(decrease, quantity, increase);
+                    const remove = document.createElement("button");
+                    remove.className = "remove-button";
+                    remove.type = "button";
+                    remove.textContent = "Remove";
+                    remove.addEventListener("click", () => setQuantity(sku, 0));
+                    row.append(description, controls, remove);
+                    cartItems.append(row);
+                });
+                setStatus("");
+            }
+
+            function openDrawer() {
+                returnFocus = document.activeElement;
+                drawerLayer.hidden = false;
+                document.body.classList.add("drawer-open");
+                document.getElementById("bag-close").focus();
+            }
+
+            function closeDrawer() {
+                drawerLayer.hidden = true;
+                document.body.classList.remove("drawer-open");
+                if (returnFocus instanceof HTMLElement) returnFocus.focus();
+            }
+
+            document.querySelectorAll(".add-to-cart").forEach(button => {
+                button.addEventListener("click", () => addProduct(button.dataset.sku));
             });
-        }
+            document.getElementById("bag-open").addEventListener("click", openDrawer);
+            document.getElementById("bag-close").addEventListener("click", closeDrawer);
+            document.getElementById("drawer-backdrop").addEventListener("click", closeDrawer);
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape" && !drawerLayer.hidden) closeDrawer();
+                if (event.key === "Tab" && !drawerLayer.hidden) {
+                    const focusable = [...drawer.querySelectorAll("button:not(:disabled), a[href], summary")];
+                    const first = focusable[0];
+                    const last = focusable[focusable.length - 1];
+                    if (event.shiftKey && document.activeElement === first) {
+                        event.preventDefault();
+                        last.focus();
+                    } else if (!event.shiftKey && document.activeElement === last) {
+                        event.preventDefault();
+                        first.focus();
+                    }
+                }
+            });
 
-        function checkoutWhatsApp() {
-            if (!cart.length) return alert('Add a botanical formulation to your bag first!');
-            const total = cart.reduce((s, i) => s + i.price, 0);
-            const ship = total >= 30 ? 'Free shipping unlocked' : 'Standard shipping';
-            const message = `Hello Bare Artisan Products! I would like to order:\n\n${cart.map(i => `• ${i.name} ($${i.price.toFixed(2)} USD)`).join('\n')}\n\nTotal: $${total.toFixed(2)} USD (${ship})`;
-            window.open(`https://wa.me/18762874304?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
-        }
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && !cartDrawer.classList.contains('hidden')) toggleCart(false);
-        });
+            document.querySelectorAll("[data-filter]").forEach(button => {
+                button.addEventListener("click", () => {
+                    document.querySelectorAll("[data-filter]").forEach(filter => {
+                        filter.setAttribute("aria-pressed", String(filter === button));
+                    });
+                    document.querySelectorAll(".product-card").forEach(card => {
+                        card.hidden = button.dataset.filter !== "all" && card.dataset.category !== button.dataset.filter;
+                    });
+                });
+            });
+
+            const menuButton = document.getElementById("menu-toggle");
+            const mobileNavigation = document.getElementById("mobile-navigation");
+            menuButton.addEventListener("click", () => {
+                const expanded = menuButton.getAttribute("aria-expanded") === "true";
+                menuButton.setAttribute("aria-expanded", String(!expanded));
+                menuButton.setAttribute("aria-label", expanded ? "Open navigation" : "Close navigation");
+                mobileNavigation.classList.toggle("open", !expanded);
+            });
+            mobileNavigation.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+                mobileNavigation.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation");
+            }));
+
+            document.getElementById("whatsapp-checkout").addEventListener("click", () => {
+                if (!cart.size) {
+                    setStatus("Add a product to your bag before checkout.", true);
+                    return;
+                }
+                const total = totalCents();
+                const lines = [...cart.values()].map(({ product, quantity }) =>
+                    `${quantity} × ${product.name} — ${money(product.price_cents * quantity)} USD`
+                );
+                const shipping = total >= 3000 ? "Complimentary shipping unlocked" : "Shipping to be confirmed";
+                const message = [
+                    "Hello Bare Artisan Products, I would like to place an order:",
+                    "",
+                    ...lines,
+                    "",
+                    `Subtotal: ${money(total)} USD`,
+                    `Shipping: ${shipping}`
+                ].join("\n");
+                window.open(`https://wa.me/18762874304?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+            });
+
+            {% if payments.paypal_enabled %}
+            const paypalReadyCheck = window.setInterval(() => {
+                if (!window.paypal) return;
+                window.clearInterval(paypalReadyCheck);
+                window.paypal.Buttons({
+                    style: { layout: "vertical", color: "gold", shape: "rect", label: "paypal" },
+                    createOrder: async () => {
+                        if (!cart.size) throw new Error("Add a product to your bag before checkout.");
+                        const response = await fetch("/api/paypal/orders", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ items: orderItems() })
+                        });
+                        const result = await response.json();
+                        if (!response.ok) throw new Error(result.error || "PayPal could not create the order.");
+                        return result.id;
+                    },
+                    onApprove: async data => {
+                        const response = await fetch(`/api/paypal/orders/${encodeURIComponent(data.orderID)}/capture`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: "{}"
+                        });
+                        const result = await response.json();
+                        if (!response.ok) throw new Error(result.error || "PayPal could not capture the payment.");
+                        setStatus("PayPal payment completed. Thank you for your order.");
+                        cart.clear();
+                        resetStripeCheckout();
+                        renderCart();
+                    },
+                    onError: error => {
+                        console.error("PayPal checkout failed.", error);
+                        setStatus(error.message || "PayPal checkout failed. Please try again.", true);
+                    }
+                }).render("#paypal-buttons").catch(error => {
+                    console.error("PayPal buttons could not be loaded.", error);
+                    setStatus("PayPal buttons could not be loaded. Please try another checkout option.", true);
+                });
+            }, 100);
+            window.setTimeout(() => window.clearInterval(paypalReadyCheck), 15000);
+            {% endif %}
+
+            {% if payments.stripe_enabled %}
+            const stripeForm = document.getElementById("stripe-payment-form");
+            const stripeStart = document.getElementById("stripe-start");
+            const stripeOptions = document.getElementById("stripe-payment-options");
+            stripeStart.addEventListener("click", async () => {
+                if (!cart.size) {
+                    setStatus("Add a product to your bag before checkout.", true);
+                    return;
+                }
+                stripeStart.disabled = true;
+                setStatus("Preparing secure checkout…");
+                try {
+                    const response = await fetch("/api/stripe/payment-intents", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ items: orderItems() })
+                    });
+                    const result = await response.json();
+                    if (!response.ok) throw new Error(result.error || "Stripe could not start checkout.");
+                    stripeClient ||= window.Stripe({{ payments.stripe_publishable_key|tojson }});
+                    stripeIntent = result;
+                    stripeElements = stripeClient.elements({ clientSecret: result.client_secret });
+                    const expressCheckout = stripeElements.create("expressCheckout");
+                    expressCheckout.mount("#stripe-express-checkout");
+                    stripeElements.create("payment").mount("#stripe-payment-element");
+                    stripeOptions.hidden = false;
+                    stripeStart.hidden = true;
+                    setStatus("Choose an available express wallet or card option.");
+                    expressCheckout.on("confirm", async () => {
+                        const { error: submitError } = await stripeElements.submit();
+                        if (submitError) {
+                            setStatus(submitError.message, true);
+                            return;
+                        }
+                        const { error } = await stripeClient.confirmPayment({
+                            elements: stripeElements,
+                            clientSecret: stripeIntent.client_secret,
+                            confirmParams: { return_url: window.location.href }
+                        });
+                        if (error) setStatus(error.message, true);
+                    });
+                } catch (error) {
+                    stripeStart.disabled = false;
+                    setStatus(error.message || "Stripe checkout could not be started.", true);
+                }
+            });
+            stripeForm.addEventListener("submit", async event => {
+                event.preventDefault();
+                if (!stripeClient || !stripeElements || !stripeIntent) return;
+                const { error: submitError } = await stripeElements.submit();
+                if (submitError) {
+                    setStatus(submitError.message, true);
+                    return;
+                }
+                const { error } = await stripeClient.confirmPayment({
+                    elements: stripeElements,
+                    clientSecret: stripeIntent.client_secret,
+                    confirmParams: { return_url: window.location.href }
+                });
+                if (error) setStatus(error.message, true);
+            });
+            {% endif %}
+
+            renderCart();
+        })();
     </script>
 </body>
 </html>
