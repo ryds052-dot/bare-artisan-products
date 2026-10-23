@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BARE ARTISAN | Conscious Jamaican Botanical Skincare & Apothecary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0a09;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(217, 119, 6, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.07) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #f5f5f4;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.02em;
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(28, 25, 23, 0.82) 0%, rgba(12, 10, 9, 0.94) 100%);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245, 158, 11, 0.35);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(217, 119, 6, 0.15);
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(217, 119, 6, 0.55);
+            filter: brightness(1.08);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-500 selection:text-stone-950">
+
+    <!-- Top Complimentary Shipping Bar -->
+    <div class="bg-gradient-to-r from-stone-950 via-amber-950/50 to-stone-950 border-b border-amber-500/20 text-center py-2.5 px-4 text-[11px] uppercase tracking-[0.22em] text-amber-200 font-semibold">
+        Consciously Handcrafted in Jamaica • Free Shipping on Orders Over $30 USD
+    </div>
+
+    <!-- Sticky Luxury Navbar -->
+    <header class="sticky top-0 z-40 bg-stone-950/85 backdrop-blur-xl border-b border-stone-800/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3.5">
+                <div class="h-10 w-10 rounded-full bg-gradient-to-br from-amber-500 to-emerald-700 flex items-center justify-center font-serif font-bold text-xl text-stone-950 shadow-lg">
+                    B
+                </div>
+                <div>
+                    <span class="block text-2xl font-serif font-bold tracking-widest text-white leading-none">BARE ARTISAN</span>
+                    <span class="block text-[9px] uppercase tracking-[0.26em] text-amber-400 mt-1">Organic Jamaican Apothecary</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-[0.18em] text-stone-300">
+                <a href="#collection" class="hover:text-amber-400 transition-colors">Formulations</a>
+                <a href="#alchemy" class="hover:text-amber-400 transition-colors">Botanical Philosophy</a>
+                <a href="#faq" class="hover:text-amber-400 transition-colors">Ritual FAQ</a>
+                <a href="#concierge" class="hover:text-amber-400 transition-colors">Contact</a>
+            </nav>
+
+            <button onclick="toggleCart()" class="flex items-center gap-3 bg-stone-900 hover:bg-stone-800 border border-stone-700/80 px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest text-white transition-all">
+                <span>Apothecary Bag</span>
+                <span id="cart-count" class="bg-amber-600 text-white text-[11px] px-2.5 py-0.5 rounded-full">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Editorial Hero Section -->
+    <section class="relative py-24 md:py-32 px-6 border-b border-stone-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-2 bg-stone-900/90 border border-amber-500/30 px-4 py-1.5 rounded-full mb-6">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                    <span class="text-amber-300 text-[11px] font-semibold uppercase tracking-[0.2em]">100% Plant-Based • Energetically Handcrafted</span>
+                </div>
+
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-serif font-bold text-white leading-[1.08]">
+                    Your Skin Is Your Largest Organ.<br>
+                    <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-emerald-300">Feed It Pure Botanicals.</span>
+                </h1>
+
+                <p class="text-stone-300 text-base md:text-lg max-w-2xl mt-6 leading-relaxed">
+                    Commercial lotions coat the skin in synthetic residues and harsh preservatives. Bare Artisan formulations are consciously crafted from organic herbs grown in Jamaica—infusing raw African Shea Butter, cold-pressed Coconut Oil, Neem, and pure essential oils to restore living radiance.
+                </p>
+
+                <div class="mt-10 flex flex-wrap items-center gap-4">
+                    <a href="#collection" class="btn-gold text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-xl">
+                        Explore The Collection
+                    </a>
+                    <a href="#alchemy" class="bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-xl transition-all">
+                        Why Plant-Based Oils?
+                    </a>
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-stone-800/80 grid grid-cols-3 gap-6 max-w-lg">
+                    <div>
+                        <div class="text-2xl font-serif font-bold text-amber-400">100%</div>
+                        <div class="text-[11px] uppercase tracking-wider text-stone-400">Organic Jamaican Herbs</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-serif font-bold text-amber-400">Zero</div>
+                        <div class="text-[11px] uppercase tracking-wider text-stone-400">Aluminum or Parabens</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-serif font-bold text-amber-400">$30+</div>
+                        <div class="text-[11px] uppercase tracking-wider text-stone-400">Complimentary Shipping</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Featured Product Spotlight Card -->
+            <div class="lg:col-span-5">
+                <div class="glass-card rounded-3xl p-6 md:p-8 relative">
+                    <span class="absolute top-6 right-6 bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                        Signature Formulation
+                    </span>
+                    <div class="overflow-hidden rounded-2xl mb-6 border border-stone-800 bg-stone-950 h-80">
+                        <img src="https://images.unsplash.com/photo-1608248597359-0e6d526a6c58?auto=format&fit=crop&w=900&q=85" alt="Bare Dream Cream" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xs uppercase tracking-widest text-emerald-400 font-semibold">Infused Body Butter • 8 oz</span>
+                    <h3 class="text-3xl font-serif font-bold text-white mt-1">Bare Dream Cream</h3>
+                    <p class="text-stone-300 text-sm mt-2 leading-relaxed">
+                        Whipped African Shea Butter blended with organic Cannabis-infused Coconut Oil, Vitamin E, and grounding Patchouli essential oil for deep cellular moisture.
+                    </p>
+                    <div class="mt-6 flex items-center justify-between pt-4 border-t border-stone-800">
+                        <span class="text-3xl font-serif font-bold text-white">$30.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                        <button onclick="addToCart('Bare Dream Cream', 30)" class="btn-gold text-white text-xs font-bold uppercase tracking-widest py-3.5 px-6 rounded-xl">
+                            Add to Bag — Free Shipping
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Product Catalog Section -->
+    <section id="collection" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Small-Batch Apothecary</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mt-1">Complete Botanical Collection</h2>
+            </div>
+
+            <!-- Instant Category Filter Pills -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterCategory('all', this)" class="cat-btn bg-amber-600 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">All Goods (9)</button>
+                <button onclick="filterCategory('butters', this)" class="cat-btn bg-stone-900 text-stone-400 hover:text-white border border-stone-800 text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">Body Butters</button>
+                <button onclick="filterCategory('serums', this)" class="cat-btn bg-stone-900 text-stone-400 hover:text-white border border-stone-800 text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">Serums & Facial</button>
+                <button onclick="filterCategory('soaps', this)" class="cat-btn bg-stone-900 text-stone-400 hover:text-white border border-stone-800 text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">Soaps & Body</button>
+                <button onclick="filterCategory('oils', this)" class="cat-btn bg-stone-900 text-stone-400 hover:text-white border border-stone-800 text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all">Oils & Mists</button>
+            </div>
+        </div>
+
+        <!-- 9-Product Grid Matching Official Bare Artisan Lineup -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="catalog-grid">
+
+            <!-- 1. Bare Dream Cream -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="butters">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1608248597359-0e6d526a6c58?auto=format&fit=crop&w=800&q=80" alt="Bare Dream Cream" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <span class="absolute top-3 left-3 bg-stone-950/85 text-amber-300 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-amber-500/30">Bestseller</span>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Organic Body Butter</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Bare Dream Cream</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Deeply restorative body butter crafted to replace chemical lotions with pure plant-based nourishment for soft, supple skin.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> African Shea Butter, Cannabis infused in Coconut Oil, Vitamin E Oil, Patchouli Essential Oil.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$30.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Bare Dream Cream', 30)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 2. Bare Rosemary Body Butter -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="butters">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=800&q=80" alt="Bare Rosemary Body Butter" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <span class="absolute top-3 left-3 bg-stone-950/85 text-emerald-400 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-500/30">Herbal Infusion</span>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Organic Body Butter</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Bare Rosemary Body Butter</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Rich botanical butter infused with organic Jamaican rosemary to stimulate circulation and lock in all-day hydration.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> Unrefined African Shea Butter, Rosemary-Infused Coconut Oil, Vitamin E, Botanical Extracts.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$30.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Bare Rosemary Body Butter', 30)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 3. 7-Oil Rejuvenating Facial Serum -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="serums">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80" alt="7-Oil Facial Serum" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <span class="absolute top-3 left-3 bg-stone-950/85 text-amber-300 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-amber-500/30">Anti-Ageing</span>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Facial & Throat Elixir</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">7-Essential Oil Facial Serum</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Concentrated botanical serum formulated to rejuvenate the face and throat with 7 synergistic essential oils known for cellular renewal.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> 7 Anti-Ageing Essential Oils, Cold-Pressed Botanical Carrier Oils, Natural Vitamin E.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$28.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('7-Essential Oil Facial Serum', 28)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 4. Bare Under Eye Serum -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="serums">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" alt="Bare Under Eye Serum" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Targeted Eye Care</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Bare Under-Eye Renewal Serum</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Silky botanical roller elixir that reduces the appearance of fine lines, dark circles, and puffiness around delicate eye contours.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> Cold-Pressed Botanical Oils, Antioxidant Plant Extracts, Soothing Chamomile & Frankincense.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$24.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Bare Under-Eye Renewal Serum', 24)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 5. Bare Citrus Blast Artisan Soap -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="soaps">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1600857062241-98e5dba7f214?auto=format&fit=crop&w=800&q=80" alt="Bare Citrus Blast Soap" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <span class="absolute top-3 left-3 bg-stone-950/85 text-amber-300 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-amber-500/30">Vitamin C + Zinc</span>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Cold-Process Cleansing Bar</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Bare Citrus Blast Natural Soap</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Dynamite combination of Jamaican citrus fruits powered with antioxidants, Zinc, Vitamins C & E, and natural alpha-hydroxy acids.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> Saponified Coconut Oil, Jamaican Citrus Extracts, Natural Alpha-Hydroxy, Zinc, Vitamin C & E.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$12.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Bare Citrus Blast Soap', 12)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 6. Aluminum-Free Botanical Deodorant -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="soaps">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?auto=format&fit=crop&w=800&q=80" alt="Bare Botanical Deodorant" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Clean Daily Ritual</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Bare Aluminum-Free Deodorant</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Formulated without pore-blocking aluminum so your body detoxifies naturally while antibacterials neutralize odor all day.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> Infused Coconut Oil, Shea Butter, Arrowroot, Antibacterial Essential Oils.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$16.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Bare Aluminum-Free Deodorant', 16)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 7. Neem Infused in Coconut Oil -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="oils">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Neem Infused in Coconut Oil" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <span class="absolute top-3 left-3 bg-stone-950/85 text-emerald-400 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-500/30">Medicinal Herb</span>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Healing Botanical Infusion</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Organic Neem Infused Coconut Oil</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Potent anti-inflammatory, antifungal, and antibacterial skin remedy slow-infused with wild-harvested Jamaican Neem leaves.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> Cold-Pressed Jamaican Coconut Oil, Organic Sun-Steeped Neem Leaf.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$22.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Organic Neem Infused Coconut Oil', 22)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 8. Bare Aloe Botanical Mist -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="oils">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=80" alt="Bare Aloe Mist" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Cooling Hydrosol</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Bare Aloe Soothing Mist</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        Refreshing botanical mist crafted for instant relief after shave, after sun exposure, and to calm insect bites naturally.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> Fresh Jamaican Aloe Vera Fillet, Botanical Hydrosols, Cooling Essential Oils.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$18.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Bare Aloe Soothing Mist', 18)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+            <!-- 9. Neem & Lemongrass Insect Repellent + Beard Oil -->
+            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between catalog-item" data-cat="oils">
+                <div>
+                    <div class="relative overflow-hidden rounded-xl mb-5 bg-stone-950 border border-stone-800 h-64">
+                        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80" alt="Botanical Insect Repellent" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                        <span class="absolute top-3 left-3 bg-stone-950/85 text-emerald-400 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-500/30">DEET-Free Shield</span>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest text-emerald-400 font-semibold">Outdoor Botanical Shield</span>
+                    <h3 class="text-2xl font-serif font-bold text-white mt-1">Neem & Lemongrass Repellent</h3>
+                    <p class="text-stone-400 text-xs leading-relaxed mt-2">
+                        DEET-free island protection formulated with 5 synergistic botanical oils that nourish the skin while repelling mosquitoes.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-stone-800/80 text-[11px] text-stone-300">
+                        <strong class="text-amber-400">Ingredients:</strong> Infused Neem, Eucalyptus, Peppermint, Lemongrass, and Clove Oil.
+                    </div>
+                </div>
+                <div class="mt-6 flex items-center justify-between">
+                    <span class="text-2xl font-serif font-bold text-white">$20.00 <span class="text-xs font-sans font-normal text-stone-400">USD</span></span>
+                    <button onclick="addToCart('Neem & Lemongrass Repellent', 20)" class="btn-gold text-white text-xs font-bold uppercase tracking-wider py-3 px-5 rounded-xl">+ Add to Bag</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Botanical Philosophy & Interactive FAQ (Replaces Broken "Collapsible Row" on Old Site) -->
+    <section id="faq" class="py-20 bg-stone-950/80 border-t border-stone-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">Conscious Skincare Knowledge</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mt-1">Apothecary Standards & Rituals</h2>
+            </div>
+
+            <div class="space-y-4">
+                <details class="glass-card rounded-2xl p-6 group" open>
+                    <summary class="font-serif text-xl font-bold text-white cursor-pointer flex items-center justify-between">
+                        <span>Why do commercial lotions dry out the skin compared to Bare Body Butters?</span>
+                        <span class="text-amber-400 text-sm">+</span>
+                    </summary>
+                    <p class="text-stone-300 text-sm leading-relaxed mt-3">
+                        When you apply commercial lotion, the skin feels moisturized at first, but synthetic petroleum residues and harsh preservatives strip the skin barrier over time. Mother Nature has given us raw plant-based oils—African Shea Butter and herb-infused Jamaican Coconut Oil—that absorb deeply to create genuinely soft, supple skin.
+                    </p>
+                </details>
+
+                <details class="glass-card rounded-2xl p-6 group">
+                    <summary class="font-serif text-xl font-bold text-white cursor-pointer flex items-center justify-between">
+                        <span>How do I qualify for Complimentary Shipping?</span>
+                        <span class="text-amber-400 text-sm">+</span>
+                    </summary>
+                    <p class="text-stone-300 text-sm leading-relaxed mt-3">
+                        All orders of $30.00 USD or more automatically receive complimentary shipping. A single jar of Bare Dream Cream or Bare Rosemary Body Butter ($30.00 USD) unlocks free delivery immediately.
+                    </p>
+                </details>
+
+                <details class="glass-card rounded-2xl p-6 group">
+                    <summary class="font-serif text-xl font-bold text-white cursor-pointer flex items-center justify-between">
+                        <span>How can I speak directly with the Bare Artisan team in Jamaica?</span>
+                        <span class="text-amber-400 text-sm">+</span>
+                    </summary>
+                    <p class="text-stone-300 text-sm leading-relaxed mt-3">
+                        Call or WhatsApp us directly at <strong>(876) 287-4304</strong> or <strong>(876) 365-5202</strong>, or email <strong>baresoap876@gmail.com</strong> for custom wholesale, gift boxes, or skincare consultations.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="concierge" class="bg-stone-950 border-t border-stone-800/80 py-16 text-stone-400 text-sm">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+                <span class="text-xl font-serif font-bold text-white tracking-widest">BARE ARTISAN PRODUCTS</span>
+                <p class="mt-3 text-xs leading-relaxed text-stone-400">
+                    Handcrafted consciously and energetically from herbs grown organically in Jamaica, honoring the skin as our largest living organ.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-white mb-3">Direct Concierge</h4>
+                <p>Phone / WhatsApp: <a href="https://wa.me/18762874304" class="text-amber-400 hover:underline">(876) 287-4304</a> / (876) 365-5202</p>
+                <p class="mt-1">Email: <a href="mailto:baresoap876@gmail.com" class="text-amber-400 hover:underline">baresoap876@gmail.com</a></p>
+            </div>
+            <div class="md:text-right">
+                <p class="text-xs uppercase tracking-widest text-amber-400">100% Organic Jamaican Botanicals</p>
+                <p class="text-xs text-stone-500 mt-2">© 2026 Bare Artisan Products. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-Out Shopping Bag Drawer with $30 Free Shipping Meter -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-stone-950/80 backdrop-blur-sm" onclick="toggleCart()"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-stone-900 border-l border-stone-800 p-8 flex flex-col justify-between shadow-2xl">
+            <div>
+                <div class="flex items-center justify-between pb-5 border-b border-stone-800">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-amber-400">Small-Batch Order</span>
+                        <h3 class="text-2xl font-serif font-bold text-white">Your Apothecary Bag</h3>
+                    </div>
+                    <button onclick="toggleCart()" class="text-stone-400 hover:text-white text-xs uppercase tracking-widest border border-stone-700 px-3 py-1.5 rounded-lg">Close</button>
+                </div>
+
+                <!-- Dynamic Free Shipping Progress Bar -->
+                <div class="my-4 bg-stone-950 border border-stone-800 p-3.5 rounded-xl">
+                    <div id="shipping-text" class="text-xs text-amber-300 font-medium mb-2">Add $30.00 more for FREE Shipping!</div>
+                    <div class="w-full h-1.5 bg-stone-800 rounded-full overflow-hidden">
+                        <div id="shipping-bar" class="h-full bg-gradient-to-r from-amber-500 to-emerald-400 transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div id="cart-items" class="py-4 space-y-3 max-h-[50vh] overflow-y-auto text-sm">
+                    <p class="text-stone-500 text-center py-10">Your apothecary bag is empty.</p>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-stone-800">
+                <div class="flex items-center justify-between text-lg font-bold text-white mb-5">
+                    <span>Subtotal</span>
+                    <span id="cart-total" class="text-amber-400">$0.00 USD</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full btn-gold text-white text-xs font-bold uppercase tracking-widest py-4 px-6 rounded-xl text-center">
+                    Complete Order via WhatsApp (876-287-4304)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.className = 'cat-btn bg-stone-900 text-stone-400 hover:text-white border border-stone-800 text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all';
+            });
+            btn.className = 'cat-btn bg-amber-600 text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all';
+            document.querySelectorAll('.catalog-item').forEach(el => {
+                el.style.display = (cat === 'all' || el.dataset.cat === cat) ? 'flex' : 'none';
+            });
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('hidden');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            renderCart();
+            document.getElementById('cart-drawer').classList.remove('hidden');
+        }
+
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            renderCart();
+        }
+
+        function renderCart() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const list = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            const shipText = document.getElementById('shipping-text');
+            const shipBar = document.getElementById('shipping-bar');
+
+            const total = cart.reduce((s, i) => s + i.price, 0);
+            totalEl.innerText = `$${total.toFixed(2)} USD`;
+
+            const pct = Math.min(100, (total / 30) * 100);
+            shipBar.style.width = `${pct}%`;
+            shipText.innerText = total >= 30 
+                ? '✓ You unlocked FREE Complimentary Shipping!' 
+                : `Add $${(30 - total).toFixed(2)} USD more for FREE Shipping!`;
+
+            if (cart.length === 0) {
+                list.innerHTML = '<p class="text-stone-500 text-center py-10">Your apothecary bag is empty.</p>';
+                return;
+            }
+
+            list.innerHTML = cart.map((item, i) => `
+                <div class="flex items-center justify-between bg-stone-950 border border-stone-800 p-3.5 rounded-xl">
+                    <div>
+                        <div class="font-semibold text-white">${item.name}</div>
+                        <div class="text-xs text-amber-400">$${item.price.toFixed(2)} USD</div>
+                    </div>
+                    <button onclick="removeFromCart(${i})" class="text-xs text-stone-500 hover:text-red-400 uppercase">Remove</button>
+                </div>
+            `).join('');
+        }
+
+        function checkoutWhatsApp() {
+            if (!cart.length) return alert('Add a botanical formulation to your bag first!');
+            const total = cart.reduce((s, i) => s + i.price, 0);
+            const items = cart.map(i => `• ${i.name} ($${i.price.toFixed(2)} USD)`).join('%0A');
+            const ship = total >= 30 ? 'FREE Shipping Unlocked' : 'Standard Shipping';
+            window.open(`https://wa.me/18762874304?text=Hello%20Bare%20Artisan%20Products!%20I%20would%20like%20to%20order:%0A%0A${items}%0A%0ATotal:%20$${total.toFixed(2)}%20USD%20(${ship})`, '_blank');
+        }
+    </script>
+</body>
+</html>
